@@ -6,9 +6,9 @@ conn = psycopg2.connect(
     port="5432",
     database="bda.1",
     user="postgres",
-    password="dounia123"
+    # password="dounia123"
     # password="mtissandier"
-    # password="souabk"
+    password="souabk"
 )
 
 # Création de la BDD
