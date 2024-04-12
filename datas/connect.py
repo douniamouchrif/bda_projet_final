@@ -4,7 +4,7 @@ import psycopg2
 conn = psycopg2.connect(
     host="localhost",
     port="5432",
-    database="bddd",
+    database="bda.1",
     user="postgres",
     password="dounia123"
     # password="mtissandier"
@@ -14,4 +14,4 @@ conn = psycopg2.connect(
 # Création de la BDD
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute("CREATE DATABASE testtt;")
+cursor.execute("CREATE DATABASE bda.1;")
