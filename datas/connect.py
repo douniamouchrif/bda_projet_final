@@ -3,16 +3,16 @@ import psycopg2
 # Connexion à la base de données PostgreSQL
 conn = psycopg2.connect(
     host="localhost",
-    port="5433",
-    # port="5432",
+    #port="5433",
+    port="5432",
     database="bda1",
     user="postgres",
-    # password="dounia123"
+    password="dounia123"
     # password="mtissandier"
-    password="souabk"
+    #password="souabk"
 )
 
-'''# Création de la BDD
+"""# Création de la BDD
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute("CREATE DATABASE bda1;")'''
+cursor.execute("CREATE DATABASE bda1;")"""
