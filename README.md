@@ -21,4 +21,4 @@
 intermède 1 (terminal SQL shell) :
     - utiliser notre base de données : \c bda1
     - visionner les tables créées : \dt
-    - voir le contenu d'une table : select * from commune;
+    - voir le contenu d'une table : select * from region;
