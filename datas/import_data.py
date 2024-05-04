@@ -83,7 +83,11 @@ data_to_insert = [
     ('DECE8290', 1982, 1990, 'Nombre de décès entre 1982 et 1990'),
     ('DECE7582', 1975, 1982, 'Nombre de décès entre 1975 (en 1974 pour les DOM) et 1982'),
     ('DECE6875', 1968, 1975,
-     'Nombre de décès entre 1968 et 1975 (en 1967 et 1974 pour les DOM)')
+     'Nombre de décès entre 1968 et 1975 (en 1967 et 1974 pour les DOM)'),
+    ('MAR21AGE_1', 2021, 2021,
+     'Groupe d\'âges des époux selon le département et la région de mariage. Année 2021'),
+    ('MAR21AGE_2', 2021, 2021,
+     'Groupe d\'âges des époux se mariant pour la première fois selon le département et la région de mariage. Année 2021')
 ]
 
 for row in data_to_insert:
@@ -94,22 +98,45 @@ for row in data_to_insert:
     """, (id_stat, annee_debut, annee_fin, libelle))
 
 # Données Pop_Commune
-column_names = ['CODGEO','P20_POP','P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP', 
-                'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582','NAIS6875', 
-                'DECE1420', 'DECE0914', 'DECE9909','DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
+column_names = ['CODGEO', 'P20_POP', 'P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP',
+                'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582', 'NAIS6875',
+                'DECE1420', 'DECE0914', 'DECE9909', 'DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
 dtype_dict = {'CODGEO': str}
-df_pop = pd.read_csv('datas/files/base-cc-serie-historique-2020.csv', delimiter=";", dtype=dtype_dict)
+df_pop = pd.read_csv(
+    'datas/files/base-cc-serie-historique-2020.csv', delimiter=";", dtype=dtype_dict)
 
 df_commune_com = df_com[df_com['TYPECOM'] == 'COM'][['COM']]
 
 for i in range(len(df_pop)):
     num_com = df_pop[column_names[0]][i]
-    if num_com in df_commune_com['COM'].values:  # Vérifie si num_com est dans df_commune_com['COM'] (pour avoir que les types COM)
+    # Vérifie si num_com est dans df_commune_com['COM'] (pour avoir que les types COM)
+    if num_com in df_commune_com['COM'].values:
         for column_name in column_names[1:]:
-            valeur = df_pop[column_name][i].item()  # Convertir numpy.int64 en type de données Python standard
+            # Convertir numpy.int64 en type de données Python standard
+            valeur = df_pop[column_name][i].item()
             insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
             cursor.execute(insert_query, (num_com, column_name, valeur))
 
+# Données Stats_Mar1
+files = ['datas/files/Dep1.csv', 'datas/files/Dep3.csv']
+
+for i, file in enumerate(files):
+    df_mar1 = pd.read_csv(file, sep=';')
+    df_mariages1 = df_mar1[['TYPMAR3', 'REGDEP_MAR', 'GRAGE', 'NBMARIES']]
+    df_mariages1.columns = ['type_couple', 'dep', 'ages', 'nb_mar']
+
+    id_stat_value = f'MAR21AGE_{i + 1}'
+    df_mariages1['id_stat'] = id_stat_value
+
+    buffer_mar1 = StringIO()
+    df_mariages1.to_csv(buffer_mar1, sep='\t', header=False, index=False)
+    buffer_mar1.seek(0)
+
+    copy_query = """
+        COPY Stats_Mar1(type_couple, dep, ages, nb_mar, id_stat)
+        FROM STDIN DELIMITER '\t' CSV;
+    """
+    cursor.copy_expert(sql=copy_query, file=buffer_mar1)
 
 cursor.close()
 conn.commit()

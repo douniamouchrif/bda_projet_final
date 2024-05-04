@@ -52,11 +52,10 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS Stats_Mar1 (
     type_couple TEXT NOT NULL,
     dep TEXT NOT NULL,
-    age_debut INTEGER NOT NULL,
-    age_fin INTEGER NOT NULL,
+    ages TEXT NOT NULL,
     nb_mar INTEGER NOT NULL,
     id_stat TEXT REFERENCES Stats_Var(id_stat),
-    PRIMARY KEY(type_couple, dep, age_debut, age_fin)
+    PRIMARY KEY(type_couple, dep, ages, id_stat)
     );
 """)
 
