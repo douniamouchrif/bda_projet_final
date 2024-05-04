@@ -47,6 +47,52 @@ cursor.execute("""
     );
 """)
 
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Stats_Mar1 (
+    type_couple TEXT NOT NULL,
+    dep TEXT NOT NULL,
+    age_debut INTEGER NOT NULL,
+    age_fin INTEGER NOT NULL,
+    nb_mar INTEGER NOT NULL,
+    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    PRIMARY KEY(type_couple, dep, age_debut, age_fin)
+    );
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Stats_Mar2 (
+    type_couple TEXT NOT NULL,
+    dep_domi TEXT NOT NULL,
+    lieu TEXT NOT NULL,
+    nb_mar INTEGER NOT NULL,
+    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    PRIMARY KEY(type_couple, dep_domi, lieu)
+    );
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Stats_Mar3 (
+    type_couple TEXT NOT NULL,
+    dep TEXT NOT NULL,
+    sexe TEXT NOT NULL,
+    etat_mar INTEGER NOT NULL,
+    nb_mar INTEGER NOT NULL,
+    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    PRIMARY KEY(type_couple, dep, sexe, etat_mar)
+    );
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Stats_Mar4 (
+    type_couple TEXT NOT NULL,
+    dep TEXT NOT NULL,
+    mois TEXT NOT NULL,
+    nb_mar INTEGER NOT NULL,
+    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    PRIMARY KEY(type_couple, dep, mois)
+    );
+""")
+
 conn.commit()
 cursor.close()
 conn.close()
