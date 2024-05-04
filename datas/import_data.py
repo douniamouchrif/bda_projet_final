@@ -87,7 +87,11 @@ data_to_insert = [
     ('MAR21AGE_1', 2021, 2021,
      'Groupe d\'âges des époux selon le département et la région de mariage. Année 2021'),
     ('MAR21AGE_2', 2021, 2021,
-     'Groupe d\'âges des époux se mariant pour la première fois selon le département et la région de mariage. Année 2021')
+     'Groupe d\'âges des époux se mariant pour la première fois selon le département et la région de mariage. Année 2021'),
+    ('MAR21NAT', 2021, 2021,
+     'Nationalité des époux selon le département et la région de domicile conjugal. Année 2021'),
+    ('MAR21PAYS', 2021, 2021,
+     'Pays de naissance des époux selon le département et la région de domicile conjugal. Année 2021')
 ]
 
 for row in data_to_insert:
@@ -148,6 +152,29 @@ for i, file in enumerate(files):
         FROM STDIN DELIMITER '\t' CSV;
     """
     cursor.copy_expert(sql=copy_query, file=buffer_mar1)
+
+# Données Stats_Mar2
+df_mar2_v1 = pd.read_csv('datas/files/Dep4.csv', sep=';')
+df_mariages2_v1 = df_mar2_v1[['TYPMAR2', 'REGDEP_DOMI', 'NATEPOUX', 'NBMAR']]
+df_mariages2_v1.columns = ['type_couple', 'dep_domi', 'lieu', 'nb_mar']
+df_mariages2_v1['id_stat'] = 'MAR21NAT'
+
+df_mar2_v2 = pd.read_csv('datas/files/Dep5.csv', sep=';')
+df_mariages2_v2 = df_mar2_v2[['TYPMAR2', 'REGDEP_DOMI', 'LNEPOUX', 'NBMAR']]
+df_mariages2_v2.columns = ['type_couple', 'dep_domi', 'lieu', 'nb_mar']
+df_mariages2_v2['id_stat'] = 'MAR21PAYS'
+
+df_mariages2 = pd.concat([df_mariages2_v1, df_mariages2_v2], ignore_index=True)
+
+buffer_mar2 = StringIO()
+df_mariages2.to_csv(buffer_mar2, sep='\t', header=False, index=False)
+buffer_mar2.seek(0)
+
+copy_query = """
+    COPY Stats_Mar2(type_couple, dep_domi, lieu, nb_mar, id_stat)
+    FROM STDIN DELIMITER '\t' CSV;
+"""
+cursor.copy_expert(sql=copy_query, file=buffer_mar2)
 
 cursor.close()
 conn.commit()

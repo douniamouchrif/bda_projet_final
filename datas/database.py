@@ -66,7 +66,7 @@ cursor.execute("""
     lieu TEXT NOT NULL,
     nb_mar INTEGER NOT NULL,
     id_stat TEXT REFERENCES Stats_Var(id_stat),
-    PRIMARY KEY(type_couple, dep_domi, lieu)
+    PRIMARY KEY(type_couple, dep_domi, lieu, id_stat)
     );
 """)
 
