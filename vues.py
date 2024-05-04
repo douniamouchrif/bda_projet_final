@@ -10,6 +10,8 @@ FROM Departement d
 JOIN Commune c ON d.num_dep = c.num_dep
 JOIN Pop_Commune p ON c.num_com = p.num_com
 JOIN Stats_Var s ON p.id_stat = s.id_stat
+WHERE p.id_stat = 'P20_POP' OR p.id_stat = 'P14_POP' OR p.id_stat = 'P09_POP' 
+OR p.id_stat = 'D99_POP' OR p.id_stat = 'D90_POP' OR p.id_stat = 'D82_POP' OR p.id_stat = 'D75_POP' OR p.id_stat = 'D68_POP'
 GROUP BY d.num_dep, p.id_stat, libelle_indicateur
 ORDER BY departement;
 """
@@ -29,6 +31,8 @@ JOIN Departement d ON r.num_reg = d.num_reg
 JOIN Commune c ON d.num_dep = c.num_dep
 JOIN Pop_Commune p ON c.num_com = p.num_com
 JOIN Stats_Var s ON p.id_stat = s.id_stat
+WHERE p.id_stat = 'P20_POP' OR p.id_stat = 'P14_POP' OR p.id_stat = 'P09_POP' 
+OR p.id_stat = 'D99_POP' OR p.id_stat = 'D90_POP' OR p.id_stat = 'D82_POP' OR p.id_stat = 'D75_POP' OR p.id_stat = 'D68_POP'
 GROUP BY r.num_reg, p.id_stat, libelle_indicateur
 ORDER BY region;
 """
