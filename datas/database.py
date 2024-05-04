@@ -40,10 +40,11 @@ cursor.execute("""
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Pop_Commune (
     num_com TEXT REFERENCES Commune(num_com),
-    annee INTEGER NOT NULL CHECK (annee >= 1968 AND annee <= 2020),
+    annee_debut INTEGER NOT NULL CHECK (annee_debut >= 1968 AND annee_debut <= 2020),
+    annee_fin INTEGER NOT NULL CHECK (annee_fin >= 1968 AND annee_fin <= 2020 AND annee_fin >= annee_debut),
     id_stat INTEGER REFERENCES Stats_Var(id_stat),
     valeur INTEGER,
-    PRIMARY KEY(num_com, annee, id_stat)
+    PRIMARY KEY(num_com, annee_debut, annee_fin, id_stat)
     );
 """)
 
