@@ -117,6 +117,17 @@ for i in range(len(df_pop)):
             insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
             cursor.execute(insert_query, (num_com, column_name, valeur))
 
+df_pop_dom = pd.read_csv(
+    'datas/files/base-cc-serie-historique-2020-COM.csv', delimiter=";", dtype=dtype_dict)
+
+for i in range(len(df_pop_dom)):
+    num_com = df_pop_dom[column_names[0]][i]
+    if num_com in df_commune_com['COM'].values:
+        for column_name in column_names[1:]:
+            valeur = df_pop_dom[column_name][i].item()
+            insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
+            cursor.execute(insert_query, (num_com, column_name, valeur))
+
 # Données Stats_Mar1
 files = ['datas/files/Dep1.csv', 'datas/files/Dep3.csv']
 
