@@ -32,7 +32,9 @@ cursor.execute("""
 
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Stats_Var (
-    id_stat INTEGER PRIMARY KEY,
+    id_stat TEXT PRIMARY KEY,
+    annee_debut INTEGER NOT NULL CHECK (annee_debut >= 1968 AND annee_debut <= 2021),
+    annee_fin INTEGER NOT NULL CHECK (annee_fin >= 1968 AND annee_fin <= 2021 AND annee_fin >= annee_debut),
     libelle TEXT NOT NULL
     );
 """)
@@ -40,11 +42,9 @@ cursor.execute("""
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS Pop_Commune (
     num_com TEXT REFERENCES Commune(num_com),
-    annee_debut INTEGER NOT NULL CHECK (annee_debut >= 1968 AND annee_debut <= 2020),
-    annee_fin INTEGER NOT NULL CHECK (annee_fin >= 1968 AND annee_fin <= 2020 AND annee_fin >= annee_debut),
-    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    id_stat TEXT REFERENCES Stats_Var(id_stat),
     valeur INTEGER,
-    PRIMARY KEY(num_com, annee_debut, annee_fin, id_stat)
+    PRIMARY KEY(num_com, id_stat)
     );
 """)
 
@@ -55,7 +55,7 @@ cursor.execute("""
     age_debut INTEGER NOT NULL,
     age_fin INTEGER NOT NULL,
     nb_mar INTEGER NOT NULL,
-    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    id_stat TEXT REFERENCES Stats_Var(id_stat),
     PRIMARY KEY(type_couple, dep, age_debut, age_fin)
     );
 """)
@@ -66,7 +66,7 @@ cursor.execute("""
     dep_domi TEXT NOT NULL,
     lieu TEXT NOT NULL,
     nb_mar INTEGER NOT NULL,
-    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    id_stat TEXT REFERENCES Stats_Var(id_stat),
     PRIMARY KEY(type_couple, dep_domi, lieu)
     );
 """)
@@ -78,7 +78,7 @@ cursor.execute("""
     sexe TEXT NOT NULL,
     etat_mar INTEGER NOT NULL,
     nb_mar INTEGER NOT NULL,
-    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    id_stat TEXT REFERENCES Stats_Var(id_stat),
     PRIMARY KEY(type_couple, dep, sexe, etat_mar)
     );
 """)
@@ -89,7 +89,7 @@ cursor.execute("""
     dep TEXT NOT NULL,
     mois TEXT NOT NULL,
     nb_mar INTEGER NOT NULL,
-    id_stat INTEGER REFERENCES Stats_Var(id_stat),
+    id_stat TEXT REFERENCES Stats_Var(id_stat),
     PRIMARY KEY(type_couple, dep, mois)
     );
 """)

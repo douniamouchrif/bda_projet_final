@@ -22,3 +22,14 @@ intermède 1 (terminal SQL shell) :
     - utiliser notre base de données : \c bda1
     - visionner les tables créées : \dt
     - voir le contenu d'une table : select * from region;
+
+pour drop les tables à partir du terminale :
+drop table stats_mar1 ;
+drop table stats_mar2 ;
+drop table stats_mar3 ;
+drop table stats_mar4 ;
+drop table pop_commune;
+drop table stats_var ;
+drop table commune;
+drop table departement;
+drop table region;
