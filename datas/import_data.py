@@ -56,7 +56,42 @@ copy_query = """
 cursor.copy_expert(sql=copy_query, file=buffer_com)
 
 # Données Stats_var
+data_to_insert = [
+    ('P20_POP', 2020, 2020, 'Population en 2020'),
+    ('P14_POP', 2014, 2014, 'Population en 2014'),
+    ('P09_POP', 2009, 2009, 'Population en 2009'),
+    ('D99_POP', 1999, 1999, 'Population en 1999'),
+    ('D90_POP', 1990, 1990, 'Population sans les doubles comptes en 1990'),
+    ('D82_POP', 1982, 1982, 'Population sans les doubles comptes en 1982'),
+    ('D75_POP', 1975, 1975,
+     'Population sans les doubles comptes en 1975 (en 1974 pour les DOM)'),
+    ('D68_POP', 1968, 1968,
+     'Population sans les doubles comptes en 1968 (en 1967 pour les DOM)'),
+    ('NAIS1420', 2014, 2020, 'Nombre de naissances entre 2014 et 2020'),
+    ('NAIS0914', 2009, 2014, 'Nombre de naissances entre 2009 et 2014'),
+    ('NAIS9909', 1999, 2009, 'Nombre de naissances entre 1999 et 2009'),
+    ('NAIS9099', 1990, 1999, 'Nombre de naissances entre 1990 et 1999'),
+    ('NAIS8290', 1982, 1990, 'Nombre de naissances entre 1982 et 1990'),
+    ('NAIS7582', 1975, 1982,
+     'Nombre de naissances entre 1975 (en 1974 pour les DOM) et 1982'),
+    ('NAIS6875', 1968, 1975,
+     'Nombre de naissances entre 1968 et 1975 (en 1967 et 1974 pour les DOM)'),
+    ('DECE1420', 2014, 2020, 'Nombre de décès entre 2014 et 2020'),
+    ('DECE0914', 2009, 2014, 'Nombre de décès entre 2009 et 2014'),
+    ('DECE9909', 1999, 2009, 'Nombre de décès entre 1999 et 2009'),
+    ('DECE9099', 1990, 1999, 'Nombre de décès entre 1990 et 1999'),
+    ('DECE8290', 1982, 1990, 'Nombre de décès entre 1982 et 1990'),
+    ('DECE7582', 1975, 1982, 'Nombre de décès entre 1975 (en 1974 pour les DOM) et 1982'),
+    ('DECE6875', 1968, 1975,
+     'Nombre de décès entre 1968 et 1975 (en 1967 et 1974 pour les DOM)')
+]
 
+for row in data_to_insert:
+    id_stat, annee_debut, annee_fin, libelle = row
+    cursor.execute("""
+        INSERT INTO Stats_Var (id_stat, annee_debut, annee_fin, libelle)
+        VALUES (%s, %s, %s, %s);
+    """, (id_stat, annee_debut, annee_fin, libelle))
 
 # Données Pop_Commune
 
