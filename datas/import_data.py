@@ -92,8 +92,10 @@ data_to_insert = [
      'Nationalité des époux selon le département et la région de domicile conjugal. Année 2021'),
     ('MAR21PAYS', 2021, 2021,
      'Pays de naissance des époux selon le département et la région de domicile conjugal. Année 2021'),
-     ('MAR21EM_1', 2021, 2021,
-     'État matrimonial antérieur des époux selon le département et la région de mariage. Année 2021')
+    ('MAR21EM', 2021, 2021,
+     'État matrimonial antérieur des époux selon le département et la région de mariage. Année 2021'),
+    ('MAR21MOIS', 2021, 2021,
+     'Répartition mensuelle des mariages selon le département et la région de mariage. Année 2021')
 ]
 
 for row in data_to_insert:
@@ -148,7 +150,6 @@ for i, file in enumerate(files):
     buffer_mar1 = StringIO()
     df_mariages1.to_csv(buffer_mar1, sep='\t', header=False, index=False)
     buffer_mar1.seek(0)
-
     copy_query = """
         COPY Stats_Mar1(type_couple, dep, ages, nb_mar, id_stat)
         FROM STDIN DELIMITER '\t' CSV;
@@ -171,7 +172,6 @@ df_mariages2 = pd.concat([df_mariages2_v1, df_mariages2_v2], ignore_index=True)
 buffer_mar2 = StringIO()
 df_mariages2.to_csv(buffer_mar2, sep='\t', header=False, index=False)
 buffer_mar2.seek(0)
-
 copy_query = """
     COPY Stats_Mar2(type_couple, dep_domi, lieu, nb_mar, id_stat)
     FROM STDIN DELIMITER '\t' CSV;
@@ -180,12 +180,31 @@ cursor.copy_expert(sql=copy_query, file=buffer_mar2)
 
 # Données Stats_Mar3
 df_mar3 = pd.read_csv('datas/files/Dep2.csv', sep=';')
-df_mar3 = df_mar3[['TYPMAR', 'REGDEP_MAR', 'SEXE', 'ETAMAT', 'NBMARIES']]
-df_mar3.columns = ['type_couple', 'dep', 'sexe', 'etat_mar', 'nb_mar']
-df_mar3['id_stat'] = 'MAR21EM_1'
+df_mariages3 = df_mar3[['TYPMAR', 'REGDEP_MAR', 'SEXE', 'ETAMAT', 'NBMARIES']]
+df_mariages3.columns = ['type_couple', 'dep', 'sexe', 'etat_mar', 'nb_mar']
+df_mariages3['id_stat'] = 'MAR21EM'
 buffer_mar3 = StringIO()
-df_mar3.to_csv(buffer_mar3, sep='\t', header=False, index=False)
+df_mariages3.to_csv(buffer_mar3, sep='\t', header=False, index=False)
 buffer_mar3.seek(0)
+copy_query = """
+    COPY Stats_Mar3(type_couple, dep, sexe, etat_mar, nb_mar, id_stat)
+    FROM STDIN DELIMITER '\t' CSV;
+"""
+cursor.copy_expert(sql=copy_query, file=buffer_mar3)
+
+# Données Stats_Mar4
+df_mar4 = pd.read_csv('datas/files/Dep6.csv', sep=';')
+df_mariages4 = df_mar4[['TYPMAR2', 'REGDEP_MAR', 'MMAR', 'NBMAR']]
+df_mariages4.columns = ['type_couple', 'dep', 'mois', 'nb_mar']
+df_mariages4['id_stat'] = 'MAR21MOIS'
+buffer_mar4 = StringIO()
+df_mariages4.to_csv(buffer_mar4, sep='\t', header=False, index=False)
+buffer_mar4.seek(0)
+copy_query = """
+    COPY Stats_Mar4(type_couple, dep, mois, nb_mar, id_stat)
+    FROM STDIN DELIMITER '\t' CSV;
+"""
+cursor.copy_expert(sql=copy_query, file=buffer_mar4)
 
 cursor.close()
 conn.commit()

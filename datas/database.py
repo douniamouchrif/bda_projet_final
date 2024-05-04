@@ -75,7 +75,7 @@ cursor.execute("""
     type_couple TEXT NOT NULL,
     dep TEXT NOT NULL,
     sexe TEXT NOT NULL,
-    etat_mar INTEGER NOT NULL,
+    etat_mar TEXT NOT NULL,
     nb_mar INTEGER NOT NULL,
     id_stat TEXT REFERENCES Stats_Var(id_stat),
     PRIMARY KEY(type_couple, dep, sexe, etat_mar)
