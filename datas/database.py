@@ -43,7 +43,7 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS Pop_Commune (
     num_com TEXT REFERENCES Commune(num_com),
     id_stat TEXT REFERENCES Stats_Var(id_stat),
-    valeur INTEGER,
+    valeur BIGINT,
     PRIMARY KEY(num_com, id_stat)
     );
 """)

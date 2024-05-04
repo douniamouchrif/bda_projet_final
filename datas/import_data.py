@@ -94,6 +94,22 @@ for row in data_to_insert:
     """, (id_stat, annee_debut, annee_fin, libelle))
 
 # Données Pop_Commune
+column_names = ['CODGEO','P20_POP','P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP', 
+                'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582','NAIS6875', 
+                'DECE1420', 'DECE0914', 'DECE9909','DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
+dtype_dict = {'CODGEO': str}
+df_pop = pd.read_csv('datas/files/base-cc-serie-historique-2020.csv', delimiter=";", dtype=dtype_dict)
+
+df_commune_com = df_com[df_com['TYPECOM'] == 'COM'][['COM']]
+
+for i in range(len(df_pop)):
+    num_com = df_pop[column_names[0]][i]
+    if num_com in df_commune_com['COM'].values:  # Vérifie si num_com est dans df_commune_com['COM'] (pour avoir que les types COM)
+        for column_name in column_names[1:]:
+            valeur = df_pop[column_name][i].item()  # Convertir numpy.int64 en type de données Python standard
+            insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
+            cursor.execute(insert_query, (num_com, column_name, valeur))
+
 
 cursor.close()
 conn.commit()
