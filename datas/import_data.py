@@ -55,6 +55,11 @@ copy_query = """
 """
 cursor.copy_expert(sql=copy_query, file=buffer_com)
 
+# Données Stats_var
+
+
+# Données Pop_Commune
+
 cursor.close()
 conn.commit()
 conn.close()
