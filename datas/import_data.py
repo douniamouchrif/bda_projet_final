@@ -55,6 +55,19 @@ copy_query = """
 """
 cursor.copy_expert(sql=copy_query, file=buffer_com)
 
+# Ajout de la référence à la colonne chef_lieu dans la table Region et Departement
+cursor.execute("""
+    ALTER TABLE Region
+    ADD FOREIGN KEY (chef_lieu)
+    REFERENCES Commune(num_com);
+""")
+
+cursor.execute("""
+    ALTER TABLE Departement
+    ADD FOREIGN KEY (chef_lieu)
+    REFERENCES Commune(num_com);
+""")
+
 # Données Stats_var
 data_to_insert = [
     ('P20_POP', 2020, 2020, 'Population en 2020'),
