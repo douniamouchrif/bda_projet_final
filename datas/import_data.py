@@ -91,7 +91,9 @@ data_to_insert = [
     ('MAR21NAT', 2021, 2021,
      'Nationalité des époux selon le département et la région de domicile conjugal. Année 2021'),
     ('MAR21PAYS', 2021, 2021,
-     'Pays de naissance des époux selon le département et la région de domicile conjugal. Année 2021')
+     'Pays de naissance des époux selon le département et la région de domicile conjugal. Année 2021'),
+     ('MAR21EM_1', 2021, 2021,
+     'État matrimonial antérieur des époux selon le département et la région de mariage. Année 2021')
 ]
 
 for row in data_to_insert:
@@ -175,6 +177,15 @@ copy_query = """
     FROM STDIN DELIMITER '\t' CSV;
 """
 cursor.copy_expert(sql=copy_query, file=buffer_mar2)
+
+# Données Stats_Mar3
+df_mar3 = pd.read_csv('datas/files/Dep2.csv', sep=';')
+df_mar3 = df_mar3[['TYPMAR', 'REGDEP_MAR', 'SEXE', 'ETAMAT', 'NBMARIES']]
+df_mar3.columns = ['type_couple', 'dep', 'sexe', 'etat_mar', 'nb_mar']
+df_mar3['id_stat'] = 'MAR21EM_1'
+buffer_mar3 = StringIO()
+df_mar3.to_csv(buffer_mar3, sep='\t', header=False, index=False)
+buffer_mar3.seek(0)
 
 cursor.close()
 conn.commit()
