@@ -1,6 +1,6 @@
 from connect import conn
 
-# Création de la BDD
+# Connextion à la base de données
 conn.autocommit = True
 cursor = conn.cursor()
 

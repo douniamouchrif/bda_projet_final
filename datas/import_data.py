@@ -2,7 +2,7 @@ from connect import conn
 import pandas as pd
 from io import StringIO
 
-# Connextion à la BDD
+# Connextion à la base de données
 cursor = conn.cursor()
 
 # Données Region
