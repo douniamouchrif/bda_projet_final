@@ -18,14 +18,36 @@ def layout():
 
 def display_query_results():
     results_div = html.Div([
-        html.H2("Les view"),
-        html.P("View 1: " + view1),
-        html.P("Résultat View 1: "+ str(df_pop_dep)),
-        html.P("View 2: " + view2),
-        html.P("Résultat View 1: "+ str(df_pop_reg)),
+        html.H2("Les vues"),
+
+        html.H3("Vue 1"),
+        html.P(view1),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("num_departement"), html.Th("departement"), html.Th("id_stat"), html.Th("libelle_indicateur"), html.Th("population")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(row[2]), html.Td(row[3]), html.Td(row[4])])
+                for row in df_pop_dep.itertuples()
+            ])
+        ]),
+
+        html.H3("Vue 2"),
+        html.P(view2),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("num_region"), html.Th("region"), html.Th("id_stat"), html.Th("libelle_indicateur"), html.Th("population")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(row[2]), html.Td(row[3]), html.Td(row[4])])
+                for row in df_pop_reg.itertuples()
+            ])
+        ]),
+
     ])
-    
+
     return results_div
+
 
 @callback(
     Output('query-results2', 'children'),

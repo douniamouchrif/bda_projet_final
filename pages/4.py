@@ -17,15 +17,15 @@ def layout():
 
 def display_query_results():
     results_div = html.Div([
-        html.P("Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables."
-               "Il faut bloquer les commandes INSERT, UPDATE et DELETE : "),
+        html.P("Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soient pas modifiables. Il faut bloquer les commandes INSERT, UPDATE et DELETE :"),
         html.P(query5),
         html.P(query6),
-        html.P("Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour "
-               "la population d'un département/région quand la population d'une ville est mise à jour : "),
+        html.P("Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour la population d'un département/région quand la population d'une ville est mise à jour :"),
         html.P(query7),
     ])
+
     return results_div
+
 @callback(
     Output('query-results4', 'children'),
     [Input('query-results4', 'id')]  

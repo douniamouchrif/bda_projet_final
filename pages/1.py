@@ -24,27 +24,96 @@ def layout():
         html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
     ])
 
-# Définition de la fonction pour afficher les résultats des requêtes
 def display_query_results():
     results_div = html.Div([
         html.H2("Résultats des requêtes"),
-        html.P("Requête 1 : liste des départements d'une région donnée : " + str(query_1)),
-        html.P("Résultat de la requête 1 : " + str(results_1)),
-        html.P("Requête 2 : liste des communes de plus de X habitants d'un département donné en 2020 : " + str(query_2)),
-        html.P("Résultat de la requête 2 : " + str(results_2)),
-        html.P("Requête 3 : la région la plus peuplée : " + str(query_3)),
-        html.P("Résultat de la requête 3 : " + str(result_3)),
-        html.P("Requête 4 : la région la moins peuplée : " + str(query_4)),
-        html.P("Résultat de la requête 4 : " + str(result_4)),
-        html.P("Requête 5 : les 10 communes les plus peuplées d'un département en 2020 : " + str(query_5)),
-        html.P("Résultat de la requête 5 : " + str(results_5)),
-        html.P("Requête 6 : les 10 communes les moins peuplées d'un département en 2020 : " + str(query_6)),
-        html.P("Résultat de la requête 6 : " + str(results_6)),
-        html.P("Requête 7 : le nombre total de mariages pour la 1ère fois par type de couple dans le département spécifié : " + str(query_7)),
-        html.P("Résultat de la requête 7 : " + str(results_7)),
+
+        html.H3("Requête 1 : liste des départements d'une région donnée"),
+        html.P(str(query_1)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("num_dep"), html.Th("nom_dep"), html.Th("chef_lieu")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(row[2])])
+                for row in results_1
+            ])
+        ]),
+
+        html.H3("Requête 2 : liste des communes de plus de X habitants d'un département donné en 2020"),
+        html.P(str(query_2)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("num_com"), html.Th("nom_com"), html.Th("population")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(row[2])])
+                for row in results_2
+            ])
+        ]),
+
+        html.H3("Requête 3 : la région la plus peuplée"),
+        html.P(str(query_3)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("nom_reg"), html.Th("population_totale")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(result_3[0]), html.Td(result_3[1])])
+            ])
+        ]),
+
+        html.H3("Requête 4 : la région la moins peuplée"),
+        html.P(str(query_4)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("nom_reg"), html.Th("population_totale")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(result_4[0]), html.Td(result_4[1])])
+            ])
+        ]),
+
+        html.H3("Requête 5 : les 10 communes les plus peuplées d'un département en 2020"),
+        html.P(str(query_5)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("nom_com"), html.Th("population")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1])])
+                for row in results_5
+            ])
+        ]),
+
+        html.H3("Requête 6 : les 10 communes les moins peuplées d'un département en 2020"),
+        html.P(str(query_6)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("nom_com"), html.Th("population")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1])])
+                for row in results_6
+            ])
+        ]),
+
+        html.H3("Requête 7 : le nombre total de mariages pour la 1ère fois par type de couple dans le département spécifié"),
+        html.P(str(query_7)),
+        html.Table([
+            html.Thead(
+                html.Tr([html.Th("type_couple"), html.Th("total_mariages")])
+            ),
+            html.Tbody([
+                html.Tr([html.Td(row[0]), html.Td(row[1])])
+                for row in results_7
+            ])
+        ]),
+
     ])
 
     return results_div
+
 
 @callback(
     Output('query-results', 'children'),
