@@ -7,8 +7,8 @@ conn = psycopg2.connect(
     port="5432",
     database="bda1",
     user="postgres",
-    password="dounia123"
-    # password="mtissandier"
+   #password="dounia123"
+    password="mtissandier"
     #password="souabk"
 )
 
