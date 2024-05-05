@@ -1,51 +1,34 @@
-# Dash imports
 import dash
 from dash import html, dcc, Input, Output, State
 from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
-from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
-from requests import results_1, results_2, result_3, result_4, results_5, results_6, results_7
+from triggers import query5, query6, query7
 
-question = "Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables."
+question = "Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables. Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour la population d'un département/région quand la population d'une ville est mise à jour."
 
 dash.register_page(__name__, question=question, external_stylesheets=[
     dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-def layout () :
- html.Div([
-    html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
-])
-""" 
-def display_query_results():
-    # Exécuter les requêtes et obtenir les résultats ici
-    # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
-
-    # Créer des éléments HTML pour afficher les résultats
-    results_div = html.Div([
-        html.H2("Résultats des requêtes"),
-        html.P("Résultat de la requête 1: " + str(query_1)),
-        html.P("Résultat de la requête 2: " + str(query_2)),
-        html.P("Résultat de la requête 3: " + str(query_3)),
-        html.P("Résultat de la requête 4: " + str(query_4)),
-        html.P("Résultat de la requête 5: " + str(query_5)),
-        html.P("Résultat de la requête 6: " + str(query_6)),
-        html.P("Résultat de la requête 7: " + str(query_7)),
-        # Ajoutez des résultats supplémentaires ici
+def layout():
+    return html.Div([
+        html.Div(id='query-results4')  # Div pour afficher les résultats des requêtes
     ])
-    
-    return results_div
 
-# Callback pour mettre à jour les résultats des requêtes
+def display_query_results():
+    results_div = html.Div([
+        html.P("Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables."
+               "Il faut bloquer les commandes INSERT, UPDATE et DELETE : "),
+        html.P(query5),
+        html.P(query6),
+        html.P("Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour "
+               "la population d'un département/région quand la population d'une ville est mise à jour : "),
+        html.P(query7),
+    ])
+    return results_div
 @callback(
-    Output('query-results', 'children'),
-    [Input('query-results', 'id')]  # Ajoutez un Input spécial pour déclencher le callback au démarrage de l'application
+    Output('query-results4', 'children'),
+    [Input('query-results4', 'id')]  
 )
 def update_query_results(trigger):
-    return display_query_results()"""
+    return display_query_results()

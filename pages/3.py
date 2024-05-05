@@ -10,36 +10,22 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
-#from procedure import query1
 
-question = "Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes."
+question = "Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes. N'oubliez pas de modifier au préalable la structure de la base pour accueillir ces nouvelles informations."
 
 dash.register_page(__name__, question=question, external_stylesheets=[
     dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-def layout () :
- html.Div([
-    html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
-])
- 
-"""def display_query_results():
-    # Exécuter les requêtes et obtenir les résultats ici
-    # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
-
-    # Créer des éléments HTML pour afficher les résultats
-    results_div = html.Div([
-        html.H2("Résultats des requêtes"),
-        html.P("Résultat de la requête 1: " + str(query1)),
-    
-        # Ajoutez des résultats supplémentaires ici
+# Définition du layout de votre application Dash
+def layout():
+    return html.Div([
+        html.Div(id='query-results3')  # Div pour afficher les résultats des requêtes
     ])
-    
-    return results_div
-
-# Callback pour mettre à jour les résultats des requêtes
+"""
 @callback(
-    Output('query-results', 'children'),
-    [Input('query-results', 'id')]  # Ajoutez un Input spécial pour déclencher le callback au démarrage de l'application
+    Output('query-results3', 'children'),
+    [Input('query-results3', 'id')]  
 )
 def update_query_results(trigger):
-    return display_query_results()"""
+    return display_query_results()
+"""

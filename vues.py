@@ -3,7 +3,7 @@ import pandas as pd
 cursor = conn.cursor()
 
 # Vue pour la population des départements pour différentes années
-view1 = """
+view1 = f"""
 CREATE OR REPLACE VIEW Pop_Dep AS
 SELECT d.num_dep AS num_departement, d.nom_dep AS departement, p.id_stat, s.libelle AS libelle_indicateur, SUM(p.valeur) AS population
 FROM Departement d

@@ -4,7 +4,7 @@ cursor = conn.cursor()
 
 #Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables.
 #Il faut bloquer les commandes INSERT, UPDATE et DELETE.
-query5 = """
+query5 = f"""
 REVOKE INSERT, UPDATE, DELETE ON Region FROM PUBLIC;
 """
 query6 = """

@@ -2,9 +2,26 @@
 import dash
 from dash import html
 from dash.dependencies import Output, Input, State
-from triggers import query5,query6,query7
+from triggers import query5
 
-print(query7)
+import dash
+from dash import html, dcc, Input, Output, State
+from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
+
+
+# Créer une application Dash
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Définir la mise en page
+app.layout = dbc.Container([
+    html.H1("Affichage de la requête SQL view1"),
+    html.Pre(str(query5), id='query-results')
+])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+
 """
 # Création de l'application Dash
 app = dash.Dash(__name__)
