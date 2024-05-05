@@ -6,7 +6,8 @@ cursor = conn.cursor()
 # Plan d'exécution de la 1ère requête
 nom_region = 'Nouvelle-Aquitaine'
 exe_query1 = f"""
-    EXPLAIN ANALYZE SELECT d.num_dep, d.nom_dep, d.chef_lieu
+    EXPLAIN ANALYZE 
+    SELECT d.num_dep, d.nom_dep, d.chef_lieu
     FROM Departement d
     JOIN Region r ON d.num_reg = r.num_reg
     WHERE r.nom_reg = '{nom_region}';
@@ -27,7 +28,8 @@ print()
 num_dep = '33'
 seuil_population = 30000
 exe_query2 = f"""
-    EXPLAIN ANALYZE SELECT c.num_com, c.nom_com, pc.valeur AS population
+    EXPLAIN ANALYZE 
+    SELECT c.num_com, c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
     WHERE c.num_dep = '{num_dep}' AND pc.valeur > {seuil_population} AND pc.id_stat = 'P20_POP'
@@ -47,7 +49,8 @@ print()
 
 # Plan d'exécution de la 3ème requête
 exe_query3 = """
-    EXPLAIN ANALYZE SELECT r.nom_reg, SUM(pc.valeur) AS population_totale
+    EXPLAIN ANALYZE 
+    SELECT r.nom_reg, SUM(pc.valeur) AS population_totale
     FROM Region r
     JOIN Departement d ON r.num_reg = d.num_reg
     JOIN Commune c ON d.num_dep = c.num_dep
@@ -70,7 +73,8 @@ print()
 
 # Plan d'exécution de la 4ème requête
 exe_query4 = """
-    EXPLAIN ANALYZE SELECT r.nom_reg, SUM(pc.valeur) AS population_totale
+    EXPLAIN ANALYZE 
+    SELECT r.nom_reg, SUM(pc.valeur) AS population_totale
     FROM Region r
     JOIN Departement d ON r.num_reg = d.num_reg
     JOIN Commune c ON d.num_dep = c.num_dep
@@ -93,7 +97,8 @@ print()
 # Plan d'exécution de la 5ème requête
 code_departement = '33'
 exe_query5 = """
-    EXPLAIN ANALYZE SELECT c.nom_com, pc.valeur AS population
+    EXPLAIN ANALYZE 
+    SELECT c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
     WHERE c.num_dep = %s AND pc.id_stat = 'P20_POP'
@@ -115,7 +120,8 @@ print()
 # Plan d'exécution de la 6ème requête
 code_departement = '33'
 exe_query6 = """
-    EXPLAIN ANALYZE SELECT c.nom_com, pc.valeur AS population
+    EXPLAIN ANALYZE 
+    SELECT c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
     WHERE c.num_dep = %s AND pc.id_stat = 'P20_POP'
@@ -136,7 +142,8 @@ print()
 # Plan d'exécution de la 7ème requête
 code_departement = '1177'
 exe_query7 = """
-    EXPLAIN ANALYZE SELECT type_couple, SUM(nb_mar) AS total_mariages
+    EXPLAIN ANALYZE 
+    SELECT type_couple, SUM(nb_mar) AS total_mariages
     FROM Stats_Mar1
     WHERE dep = %s AND id_stat = 'MAR21AGE_2'
     GROUP BY type_couple
