@@ -11,7 +11,7 @@ import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
-#from requests import results_1, results_2, results_3, results_4, results_5, results_6, results_7
+from requests import results_1, results_2, result_3, result_4, results_5, results_6, results_7
 
 question = "Prendre deux clients (deux clients en console ou un client web et un client console) pour voir que les modifs faites sur un ne sont pas visibles immédiatement. Tester et illustrer avec des exemples les différents niveaux d'isolation."
 

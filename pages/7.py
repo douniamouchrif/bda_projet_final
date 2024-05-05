@@ -11,7 +11,7 @@ import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
-#from requests import results_1, results_2, results_3, results_4, results_5, results_6, results_7
+from requests import results_1, results_2, result_3, result_4, results_5, results_6, results_7
 
 question = "Montrer l'intérêt des index sur plusieurs exemples. Vérifiez-le. Analyser aussi une requête qui liste les communes avec moins de 5000 habitants. Créer un index sur l'attribut population et refaites la manipulation. Vérifier que le SGBD fait les sélections individuelles avant de calculer les jointures."
 
