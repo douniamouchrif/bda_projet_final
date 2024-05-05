@@ -20,7 +20,7 @@ query1 = """SELECT * FROM Pop_Dep"""
 cursor.execute(query1)
 pop_dep = cursor.fetchall()
 df_pop_dep = pd.DataFrame(pop_dep, columns=['num_dep', 'departement', 'id_stat', 'libelle_indicateur', 'population'])
-print(df_pop_dep.head())
+"""print(df_pop_dep.head())"""
 
 # Vue pour la population des régions pour différentes années
 view2 = """
@@ -42,7 +42,8 @@ query2 = """SELECT * FROM Pop_Reg"""
 cursor.execute(query2)
 pop_reg = cursor.fetchall()
 df_pop_reg = pd.DataFrame(pop_reg, columns=['num_reg', 'region', 'id_stat','libelle_indicateur', 'population'])
-print(df_pop_reg.head())
+"""print(df_pop_reg.head())"""
 
-conn.commit()
-conn.close()
+
+
+

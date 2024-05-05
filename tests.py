@@ -1,9 +1,11 @@
 # Importations nécessaires
 import dash
-import dash_html_components as html
+from dash import html
 from dash.dependencies import Output, Input, State
-from requests import results_1, query_2, query_3, query_4, query_5, query_6, query_7
+from triggers import query5,query6,query7
 
+print(query7)
+"""
 # Création de l'application Dash
 app = dash.Dash(__name__)
 
@@ -12,25 +14,20 @@ app.layout = html.Div([
     html.Div(id='query-results'),  # Div pour afficher les résultats des requêtes
 ])
 
-# Fonction pour afficher les résultats des requêtes
 def display_query_results():
-    # Exécuter les requêtes et obtenir les résultats ici
-    # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
-
     # Créer des éléments HTML pour afficher les résultats
     results_div = html.Div([
         html.H2("Résultats des requêtes"),
-        html.P("Résultat de la requête 1: " + str(results_1)),
-        html.P("Résultat de la requête 2: " + query_2),
-        html.P("Résultat de la requête 1: " + query_3),
-        html.P("Résultat de la requête 1: " + query_4),
-        html.P("Résultat de la requête 1: " + query_5),
-        html.P("Résultat de la requête 1: " + query_6),
-        html.P("Résultat de la requête 1: " + query_7)
-        # Ajoutez des résultats supplémentaires ici
+        html.P("Résultat de la requête 1 (Population par département) :"),
+        html.Table([
+            html.Tr([html.Th(col) for col in df_pop_dep.columns]),
+            # Afficher uniquement les trois premières lignes
+            *[html.Tr([html.Td(df_pop_dep.iloc[i][col]) for col in df_pop_dep.columns]) for i in range(3)]
+        ]),
     ])
     
     return results_div
+
 
 # Callback pour mettre à jour les résultats des requêtes
 @app.callback(
@@ -44,3 +41,4 @@ def update_query_results(trigger):
 if __name__ == '__main__':
     app.run_server(debug=True)
 
+"""

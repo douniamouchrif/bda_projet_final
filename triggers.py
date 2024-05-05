@@ -34,6 +34,3 @@ FOR EACH STATEMENT EXECUTE FUNCTION maj_pop();
 cursor.execute(query7) 
 
 ## jsp comment tester si ça marche genre il faudrait faire une modif et voir si ça fait bien les maj ??
-
-conn.commit()
-conn.close()

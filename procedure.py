@@ -95,5 +95,5 @@ $$;"""
 cursor.execute(query2)
 cursor.execute("""CALL calcul_pop_dep_reg2()""")'''
 
-conn.commit()
-conn.close()
+"""conn.commit()
+conn.close()"""

@@ -22,7 +22,7 @@ def layout () :
  html.Div([
     html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
 ])
- 
+""" 
 def display_query_results():
     # Exécuter les requêtes et obtenir les résultats ici
     # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
@@ -41,7 +41,7 @@ def display_query_results():
     ])
     
     return results_div
-"""
+
 # Callback pour mettre à jour les résultats des requêtes
 @callback(
     Output('query-results', 'children'),

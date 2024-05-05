@@ -146,4 +146,3 @@ for type_couple, total_mariages in results_7:
     print(f"{type_couple}: {total_mariages} mariages")"""
 
 
-conn.close()
