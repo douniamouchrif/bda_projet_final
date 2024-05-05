@@ -119,35 +119,36 @@ for row in data_to_insert:
     """, (id_stat, annee_debut, annee_fin, libelle))
 
 # Données Pop_Commune
-column_names = ['CODGEO', 'P20_POP', 'P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP',
-                'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582', 'NAIS6875',
-                'DECE1420', 'DECE0914', 'DECE9909', 'DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
-dtype_dict = {'CODGEO': str}
-df_pop = pd.read_csv(
-    'datas/files/base-cc-serie-historique-2020.csv', delimiter=";", dtype=dtype_dict)
+column_names = ['CODGEO','P20_POP','P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP', 
+                'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582','NAIS6875', 
+                'DECE1420', 'DECE0914', 'DECE9909','DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
 
-df_commune_com = df_com[df_com['TYPECOM'] == 'COM'][['COM']]
+#pour avoir les bons types des données
+dtype_dict = {'CODGEO': str, 'P20_POP': 'Int64', 'P14_POP': 'Int64', 'P09_POP': 'Int64', 'D99_POP': 'Int64', 'D90_POP': 'Int64', 
+              'D82_POP': 'Int64', 'D75_POP': 'Int64', 'D68_POP': 'Int64', 'NAIS1420': 'Int64', 'NAIS0914': 'Int64', 'NAIS9909': 'Int64', 
+              'NAIS9099': 'Int64', 'NAIS8290': 'Int64', 'NAIS7582': 'Int64', 'NAIS6875': 'Int64', 'DECE1420': 'Int64', 'DECE0914': 'Int64', 
+              'DECE9909': 'Int64', 'DECE9099': 'Int64', 'DECE8290': 'Int64', 'DECE7582': 'Int64', 'DECE6875': 'Int64'}
+df_pop = pd.read_csv('datas/files/base-cc-serie-historique-2020.csv', delimiter=";", dtype=dtype_dict)
+df_pop_dom = pd.read_csv('datas/files/base-cc-serie-historique-2020-COM.csv', delimiter=";", dtype=dtype_dict)
+df_combined = pd.concat([df_pop_dom, df_pop])
+df_combined.reset_index(drop=True, inplace=True)
 
-for i in range(len(df_pop)):
-    num_com = df_pop[column_names[0]][i]
-    # Vérifie si num_com est dans df_commune_com['COM'] (pour avoir que les types COM)
-    if num_com in df_commune_com['COM'].values:
-        for column_name in column_names[1:]:
-            # Convertir numpy.int64 en type de données Python standard
-            valeur = df_pop[column_name][i].item()
-            insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
-            cursor.execute(insert_query, (num_com, column_name, valeur))
+df_commune_com = df_com[df_com['TYPECOM'] == 'COM'][['COM']] #pour avoir que les types COM
+merged_df = pd.merge(df_combined, df_commune_com, left_on='CODGEO', right_on='COM', how='inner')
 
-df_pop_dom = pd.read_csv(
-    'datas/files/base-cc-serie-historique-2020-COM.csv', delimiter=";", dtype=dtype_dict)
-
-for i in range(len(df_pop_dom)):
-    num_com = df_pop_dom[column_names[0]][i]
-    if num_com in df_commune_com['COM'].values:
-        for column_name in column_names[1:]:
-            valeur = df_pop_dom[column_name][i].item()
-            insert_query = "INSERT INTO Pop_Commune (num_com, id_stat, valeur) VALUES (%s,%s,%s);"
-            cursor.execute(insert_query, (num_com, column_name, valeur))
+for column_name in column_names[1:]:
+    df_temp = merged_df
+    df_temp['id_stat'] = column_name
+    df_temp = merged_df[['CODGEO', 'id_stat',column_name]]
+    df_temp.columns = ['num_com', 'id_stat', 'valeur']
+    buffer_com = StringIO()
+    df_temp.to_csv(buffer_com, sep='\t', header=False, index=False)
+    buffer_com.seek(0)
+    copy_query = """
+        COPY Pop_Commune(num_com, id_stat, valeur)
+        FROM STDIN DELIMITER '\t' CSV;
+    """
+    cursor.copy_expert(sql=copy_query, file=buffer_com)
 
 # Données Stats_Mar1
 files = ['datas/files/Dep1.csv', 'datas/files/Dep3.csv']
