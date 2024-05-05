@@ -37,7 +37,8 @@ explain_results = cursor.fetchall()
 for row in explain_results:
     print(row)
 print()
-'''analyse : On remarque un cout très élevé sans index supplémentaire : cost=12758.80..16126.51.'''
+'''analyse : On remarque un cout très élevé sans index supplémentaire (cost=12758.80..16126.51), 
+mais aussi un temps d'exécution élevé (Execution Time: 93.952 ms).'''
 
 
 # Création de l'index + Requête précédente
@@ -64,6 +65,8 @@ try:
     for row in explain_results_with_index:
         print(row)
     print()
+    '''analyse : On remarque un cout similaire avec l'index supplémentaire au cout sans l'index supplémentaire, 
+    mais le temps d'exécution a diminué (27.733 ms vs 93.952 ms).'''
 
 except psycopg2.Error as e:
     print(f"Erreur lors de la création de l'index : {e}")
