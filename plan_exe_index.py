@@ -73,4 +73,4 @@ except psycopg2.Error as e:
 
 
 cursor.close()
-conn.close()
+#conn.close()

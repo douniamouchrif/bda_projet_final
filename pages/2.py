@@ -1,4 +1,4 @@
-"""import dash
+import dash
 from dash import html, dcc, Input, Output, State
 from dash import register_page, callback
 from dash.dependencies import Input, Output
@@ -54,4 +54,4 @@ def display_query_results():
     [Input('query-results2', 'id')] 
 )
 def update_query_results(trigger):
-    return display_query_results()"""
+    return display_query_results()

@@ -12,12 +12,15 @@ import dash_bootstrap_components as dbc
 
 # Créer une application Dash
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
+formatted_results = [', '.join(map(str, row)) for row in explain_results]
 # Définir la mise en page
 app.layout = dbc.Container([
-    html.H1("Affichage de la requête SQL view1"),
-    html.Pre(str(explain_results), id='query-results')
+    html.H1("Affichage des résultats de la requête SQL"),
+    html.Div(id='query-results', children=[html.Pre(result) for result in formatted_results])
 ])
+
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -13,11 +13,11 @@ exe_query1 = f"""
     WHERE r.nom_reg = '{nom_region}';
 """
 cursor.execute(exe_query1)
-explain_results = cursor.fetchall()
+explain_results_1 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_1:
     print(row)
-print()
+print()"""
 
 '''analyse 1ère requête : 
 - Utilisation d'une jointure entre Departement et Region basée sur num_reg.
@@ -36,11 +36,11 @@ exe_query2 = f"""
     ORDER BY pc.valeur DESC;
 """
 cursor.execute(exe_query2)
-explain_results = cursor.fetchall()
+explain_results_2 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_2:
     print(row)
-print()
+print()"""
 
 '''analyse 2ème requête :
 - Filtre sur num_dep = '33' et pc.valeur > 30000 dans une jointure entre Commune et Pop_Commune.
@@ -60,11 +60,11 @@ exe_query3 = """
     LIMIT 1;
 """
 cursor.execute(exe_query3)
-explain_results = cursor.fetchall()
+explain_results_3 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_3:
     print(row)
-print()
+print()"""
 
 '''analyse 3ème requête :
 - Agrégation par nom_reg avec SUM(pc.valeur) pour calculer la population totale par région.
@@ -84,11 +84,11 @@ exe_query4 = """
     LIMIT 1;
 """
 cursor.execute(exe_query4)
-explain_results = cursor.fetchall()
+explain_results_4 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_4:
     print(row)
-print()
+print()"""
 
 '''analyse 4ème requête :
 - Similaire à la requête 3 mais avec un tri différent, il est par ordre croissant (ORDER BY population_totale ASC).
@@ -106,11 +106,11 @@ exe_query5 = """
     LIMIT 10;
 """
 cursor.execute(exe_query5, (code_departement,))
-explain_results = cursor.fetchall()
+explain_results_5 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_5:
     print(row)
-print()
+print()"""
 
 '''analyse 5ème requête :
 - Filtres sur c.num_dep = '33' et pc.id_stat = 'P20_POP'.
@@ -129,12 +129,12 @@ exe_query6 = """
     LIMIT 10;
 """
 cursor.execute(exe_query6, (code_departement,))
-explain_results = cursor.fetchall()
+explain_results_6 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_6:
     print(row)
 print()
-
+"""
 '''analyse 6ème requête :
 - Similaire à la requête 5 mais avec un tri différent, il est par ordre croissant (ORDER BY population_totale ASC).
 - Temps d'exécution aussi rapide (Execution Time: 1.986 ms).'''
@@ -150,11 +150,11 @@ exe_query7 = """
     ORDER BY total_mariages DESC;
 """
 cursor.execute(exe_query7, (code_departement,))
-explain_results = cursor.fetchall()
+explain_results_7 = cursor.fetchall()
 
-for row in explain_results:
+"""for row in explain_results_7:
     print(row)
-print()
+print()"""
 
 '''analyse 7ème requête :
 - Agrégation par type_couple avec SUM(nb_mar) pour obtenir le total de mariages par type de couple dans un département spécifique.
@@ -173,4 +173,4 @@ Une attention aux détails d'indexation, d'optimisation des requêtes ou encore 
 contribuera à améliorer les performances de notre système de base de données.'''
 
 cursor.close()
-conn.close()
+#conn.close()
