@@ -38,10 +38,10 @@ cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = 
 results_1 = cursor.fetchall()
 #for row in results_1:
 #    print(row)
-#cursor.execute("""update pop_commune set valeur = 6543  where num_com = '01009' and id_stat = 'D99_POP';""")
+cursor.execute("""update pop_commune set valeur = 6543  where num_com = '01009' and id_stat = 'D99_POP';""")
 ##on peut voir que la valeur de Auvergne-Rhône-Alpes pour D99_POP s'est mise à jour.
-#cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = '84';""")
-#results_2 = cursor.fetchall()
+cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = '84';""")
+results_2 = cursor.fetchall()
 #for row in results_2:
 #    print(row)
 

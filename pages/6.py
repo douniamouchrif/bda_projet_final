@@ -10,6 +10,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
+#from plan_exe import exe_query1, explain_results
 
 question = "Comparer et expliquer le coût d'exécution de différentes requêtes. Faites apparaître les différents algorithmes de jointure ou différentes stratégies de tri en jouant en particulier sur la cardinalité des relations."
 
