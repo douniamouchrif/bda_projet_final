@@ -21,7 +21,7 @@ def display_query_results():
         html.H2("Les vues"),
 
         html.H3("Vue 1"),
-        html.P(view1),
+        html.Pre(view1),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("num_departement"), html.Th("departement"), html.Th("id_stat"), html.Th("libelle_indicateur"), html.Th("population")])
@@ -33,7 +33,7 @@ def display_query_results():
         ]),
 
         html.H3("Vue 2"),
-        html.P(view2),
+        html.Pre(view2),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("num_region"), html.Th("region"), html.Th("id_stat"), html.Th("libelle_indicateur"), html.Th("population")])

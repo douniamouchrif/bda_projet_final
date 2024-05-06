@@ -2,7 +2,7 @@
 import dash
 from dash import html
 from dash.dependencies import Output, Input, State
-from triggers import query5
+from plan_exe import explain_results
 
 import dash
 from dash import html, dcc, Input, Output, State
@@ -16,7 +16,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Définir la mise en page
 app.layout = dbc.Container([
     html.H1("Affichage de la requête SQL view1"),
-    html.Pre(str(query5), id='query-results')
+    html.Pre(str(explain_results), id='query-results')
 ])
 
 if __name__ == '__main__':

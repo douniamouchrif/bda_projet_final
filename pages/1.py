@@ -29,7 +29,7 @@ def display_query_results():
         html.H2("Résultats des requêtes"),
 
         html.H3("Requête 1 : liste des départements d'une région donnée"),
-        html.P(str(query_1)),
+        html.Pre(query_1),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("num_dep"), html.Th("nom_dep"), html.Th("chef_lieu")])
@@ -41,7 +41,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 2 : liste des communes de plus de X habitants d'un département donné en 2020"),
-        html.P(str(query_2)),
+        html.Pre(query_2),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("num_com"), html.Th("nom_com"), html.Th("population")])
@@ -53,7 +53,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 3 : la région la plus peuplée"),
-        html.P(str(query_3)),
+        html.Pre(query_3),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("nom_reg"), html.Th("population_totale")])
@@ -64,7 +64,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 4 : la région la moins peuplée"),
-        html.P(str(query_4)),
+        html.Pre(query_4),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("nom_reg"), html.Th("population_totale")])
@@ -75,7 +75,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 5 : les 10 communes les plus peuplées d'un département en 2020"),
-        html.P(str(query_5)),
+        html.Pre(query_5),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("nom_com"), html.Th("population")])
@@ -87,7 +87,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 6 : les 10 communes les moins peuplées d'un département en 2020"),
-        html.P(str(query_6)),
+        html.Pre(query_6),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("nom_com"), html.Th("population")])
@@ -99,7 +99,7 @@ def display_query_results():
         ]),
 
         html.H3("Requête 7 : le nombre total de mariages pour la 1ère fois par type de couple dans le département spécifié"),
-        html.P(str(query_7)),
+        html.Pre(query_7),
         html.Table([
             html.Thead(
                 html.Tr([html.Th("type_couple"), html.Th("total_mariages")])

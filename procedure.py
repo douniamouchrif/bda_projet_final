@@ -21,8 +21,8 @@ ADD COLUMN pop1982 BIGINT,
 ADD COLUMN pop1975 BIGINT,
 ADD COLUMN pop1968 BIGINT;"""
 
-cursor.execute(pop_dep)
-cursor.execute(pop_reg)
+#cursor.execute(pop_dep)
+#cursor.execute(pop_reg)
 
 # Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes.
 
@@ -48,13 +48,13 @@ BEGIN
 
 END;
 $$;"""
-cursor.execute(query1)
+#cursor.execute(query1)
 cursor.execute("""CALL calcul_pop_dep_reg1()""")
 
 
 # VERSION 2 : sans l'utilisation des vues créées
 
-'''query2 = """CREATE OR REPLACE PROCEDURE calcul_pop_dep_reg2()
+query2 = """CREATE OR REPLACE PROCEDURE calcul_pop_dep_reg2()
 LANGUAGE plpgsql
 AS $$
 BEGIN
@@ -74,8 +74,8 @@ BEGIN
 
 END;
 $$;"""
-cursor.execute(query2)
-cursor.execute("""CALL calcul_pop_dep_reg2()""")'''
+#cursor.execute(query2)
+cursor.execute("""CALL calcul_pop_dep_reg2()""")
 
 conn.commit()
 
