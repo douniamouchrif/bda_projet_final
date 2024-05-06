@@ -70,9 +70,6 @@ cursor.execute("""
 
 # Données Stats_var
 data_to_insert = [
-    ('P20_POP', 2020, 2020, 'Population en 2020'),
-    ('P14_POP', 2014, 2014, 'Population en 2014'),
-    ('P09_POP', 2009, 2009, 'Population en 2009'),
     ('D99_POP', 1999, 1999, 'Population en 1999'),
     ('D90_POP', 1990, 1990, 'Population sans les doubles comptes en 1990'),
     ('D82_POP', 1982, 1982, 'Population sans les doubles comptes en 1982'),
@@ -119,12 +116,12 @@ for row in data_to_insert:
     """, (id_stat, annee_debut, annee_fin, libelle))
 
 # Données Pop_Commune
-column_names = ['CODGEO','P20_POP','P14_POP', 'P09_POP', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP', 
+column_names = ['CODGEO', 'D99_POP', 'D90_POP', 'D82_POP', 'D75_POP', 'D68_POP', 
                 'NAIS1420', 'NAIS0914', 'NAIS9909', 'NAIS9099', 'NAIS8290', 'NAIS7582','NAIS6875', 
                 'DECE1420', 'DECE0914', 'DECE9909','DECE9099', 'DECE8290', 'DECE7582', 'DECE6875']
 
 #pour avoir les bons types des données
-dtype_dict = {'CODGEO': str, 'P20_POP': 'Int64', 'P14_POP': 'Int64', 'P09_POP': 'Int64', 'D99_POP': 'Int64', 'D90_POP': 'Int64', 
+dtype_dict = {'CODGEO': str, 'D99_POP': 'Int64', 'D90_POP': 'Int64', 
               'D82_POP': 'Int64', 'D75_POP': 'Int64', 'D68_POP': 'Int64', 'NAIS1420': 'Int64', 'NAIS0914': 'Int64', 'NAIS9909': 'Int64', 
               'NAIS9099': 'Int64', 'NAIS8290': 'Int64', 'NAIS7582': 'Int64', 'NAIS6875': 'Int64', 'DECE1420': 'Int64', 'DECE0914': 'Int64', 
               'DECE9909': 'Int64', 'DECE9099': 'Int64', 'DECE8290': 'Int64', 'DECE7582': 'Int64', 'DECE6875': 'Int64'}

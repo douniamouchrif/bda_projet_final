@@ -20,9 +20,7 @@ query7 = """
 CREATE OR REPLACE FUNCTION maj_pop()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF TG_TABLE_NAME = 'Pop_Commune' THEN
-        PERFORM calcul_pop_dep_reg2();
-    END IF;
+    CALL calcul_pop_dep_reg2();
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
@@ -33,4 +31,18 @@ FOR EACH STATEMENT EXECUTE FUNCTION maj_pop();
 """
 cursor.execute(query7) 
 
-## jsp comment tester si ça marche genre il faudrait faire une modif et voir si ça fait bien les maj ??
+
+### TEST pour vérifier que le trigger se déclanche bien (ou alors on pourra mettre juste un screen de la sortie du terminale)
+ 
+cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = '84';""")
+results_1 = cursor.fetchall()
+for row in results_1:
+    print(row)
+cursor.execute("""update pop_commune set valeur = 6543  where num_com = '01009' and id_stat = 'D99_POP';""")
+##on peut voir que la valeur de Auvergne-Rhône-Alpes pour D99_POP s'est mise à jour.
+cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = '84';""")
+results_2 = cursor.fetchall()
+for row in results_2:
+    print(row)
+
+conn.commit()

@@ -22,21 +22,21 @@ for row in results_1:
 print()"""
 
 
-# 2ème requête SQL : liste des communes de plus de X habitants d'un département donné en 2020
+# 2ème requête SQL : liste des communes de plus de X habitants d'un département donné en 1999
 num_dep = '33'
 seuil_population = 30000
 query_2 = f"""
     SELECT c.num_com, c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
-    WHERE c.num_dep = '{num_dep}' AND pc.valeur > {seuil_population} AND pc.id_stat = 'P20_POP'
+    WHERE c.num_dep = '{num_dep}' AND pc.valeur > {seuil_population} AND pc.id_stat = 'D99_POP'
     ORDER BY pc.valeur DESC;
 """
 cursor.execute(query_2)
 results_2 = cursor.fetchall()
 
 """print(
-    f"Liste des communes de plus de {seuil_population} habitants dans le département '{num_dep}' en 2020:")
+    f"Liste des communes de plus de {seuil_population} habitants dans le département '{num_dep}' en 1999:")
 for row in results_2:
     num_com, nom_com, population = row
     print(
@@ -89,13 +89,13 @@ else:
 print()
 """
 
-# 5ème requête SQL : les 10 communes les plus peuplées d'un département en 2020
+# 5ème requête SQL : les 10 communes les plus peuplées d'un département en 1999
 code_departement = '33'
 query_5 = """
     SELECT c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
-    WHERE c.num_dep = %s AND pc.id_stat = 'P20_POP'
+    WHERE c.num_dep = %s AND pc.id_stat = 'D99_POP'
     ORDER BY pc.valeur DESC
     LIMIT 10;
 """
@@ -103,18 +103,18 @@ cursor.execute(query_5, (code_departement,))
 results_5 = cursor.fetchall()
 
 """print(
-    f"Communes les plus peuplées du département '{code_departement}' en 2020:")
+    f"Communes les plus peuplées du département '{code_departement}' en 1999:")
 for commune, population in results_5:
     print(f"{commune}: {population} habitants")
 print()"""
 
-# 6ème requête SQL : les 10 communes les moins peuplées d'un département en 2020
+# 6ème requête SQL : les 10 communes les moins peuplées d'un département en 1999
 code_departement = '33'
 query_6 = """
     SELECT c.nom_com, pc.valeur AS population
     FROM Commune c
     JOIN Pop_Commune pc ON c.num_com = pc.num_com
-    WHERE c.num_dep = %s AND pc.id_stat = 'P20_POP'
+    WHERE c.num_dep = %s AND pc.id_stat = 'D99_POP'
     ORDER BY pc.valeur ASC
     LIMIT 10;
 """
@@ -122,7 +122,7 @@ cursor.execute(query_6, (code_departement,))
 results_6 = cursor.fetchall()
 
 """print(
-    f"Communes les moins peuplées du département '{code_departement}' en 2020:")
+    f"Communes les moins peuplées du département '{code_departement}' en 1999:")
 for commune, population in results_6:
     print(f"{commune}: {population} habitants")
 print()"""
