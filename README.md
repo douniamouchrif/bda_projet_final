@@ -44,3 +44,10 @@ drop table stats_var ;
 DROP TABLE commune CASCADE;
 drop table departement;
 drop table region;
+
+## Contributeurs  : 
+
+| [<img src="https://avatars.githubusercontent.com/u/102798630?v=4" width="50" height="50" alt=""/>](https://github.com/suhailaabarkan) | [<img src="https://avatars.githubusercontent.com/u/102798610?v=4" width="50" height="50" alt=""/>](https://github.com/douniamouchrif) | [<img src="https://avatars.githubusercontent.com/u/102798509?v=4" width="50" height="50" alt=""/>](https://github.com/mathildetissandier) |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+|                                        [Suhaila Abarkan](https://github.com/suhailaabarkan)                                        |                                    [Dounia Mouchrif](https://github.com/douniamouchrif)                                    |                               [Mathilde Tissandier](https://github.com/mathildetissandier)                               |
+
