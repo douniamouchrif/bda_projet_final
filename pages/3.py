@@ -32,7 +32,6 @@ def layout():
         html.Div(id='query-results3')
     ])
 
-
 def display_query_results():
     children = []
     children.append(html.Div([

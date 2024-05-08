@@ -49,7 +49,8 @@ def display_query_results():
         html.H2(
             "Requête pour vérifier qu'une clé primaire est un index, sur la table région : "),
         html.Pre(query1),
-        # html.Div(id='query-results7', children=[html.Pre(result) for result in formatted_results]),
+        html.H4("Détails de l'index de la table 'Region' :"),
+        html.Pre("\n".join([f"Nom de l'index: {row[0]}\nDéfinition de l'index: {row[1]}\n-------------------------------------" for row in index_details])),
         html.H2("Plan d'exécution de la requête qui liste les communes avec moins de 5000 habitants en 2020 sans index supplémentaire : "),
         html.Pre(query2),
         html.Div(id='query-results7',
@@ -66,6 +67,7 @@ def display_query_results():
         html.P("Pour conclure, la création de l'index a effectivement amélioré l\'optimisation de la requête.")
     ]))
     return children
+
 
 
 @callback(

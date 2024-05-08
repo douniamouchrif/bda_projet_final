@@ -14,13 +14,13 @@ query1 = """
 cursor.execute(query1)
 index_details = cursor.fetchall()
 
-print(f"Détails des index de la table 'Region':")
+'''print(f"Détails des index de la table 'Region':")
 for row in index_details:
     index_name, index_definition = row
     print(f"Nom de l'index: {index_name}")
     print(f"Définition de l'index: {index_definition}")
     print("-------------------------------------")
-print()
+print()'''
 
 
 # Requête qui liste les communes avec moins de 5000 habitants en 2020 sans index supplémentaire
@@ -34,7 +34,6 @@ query2 = """
 """
 cursor.execute(query2)
 results_2 = cursor.fetchall()
-
 
 # Création de l'index sur l'attribut valeur de la table Pop_Commune
 query3 = "CREATE INDEX ON Pop_Commune (valeur);"
