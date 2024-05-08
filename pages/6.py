@@ -58,7 +58,7 @@ analyse_6 = "Similaire à la requête 5 mais avec un tri différent, il est par 
 analyse_7 = "Agrégation par type_couple avec SUM(nb_mar) pour obtenir le total de mariages par type de couple dans un département spécifique. "\
             "Filtre sur dep = '1177' et id_stat = 'MAR21AGE_2'. "\
             "Exécution rapide (Execution Time: 0.514 ms)."
-
+avertissement="ATTENTION : Les temps affichés dans nos analyses sont différents de ceux retournés par les plans d'éxécution (tout en restant similaires/comparables). Nous nous sommes basées sur les résultats obtenus lors de la première exécution du code. Malgré des résultats différents, les analyses restent les mêmes et aboutissent aux mêmes conclusions."
 
 def layout():
     return html.Div([
@@ -74,6 +74,14 @@ def display_query_results():
                 'color': '#F8F9FA', 'font-size': '2.5em'})
     ], style=card_style))
     children.append(html.Div([
+        html.Div([
+            html.P(html.Span(avertissement, style={"white-space": "pre-line"})),
+        ], style={
+            'border': '2px solid #ccc',  
+            'padding': '10px',  
+            'background-color': '#f4f4f4',  
+            'border-radius': '5px',  
+        }),
         html.H2("Plan d'exécution de la 1ère requête :"),
         html.Pre(exe_query1),
         html.Div(id='query-results6',
@@ -128,6 +136,7 @@ def display_query_results():
     ]))
 
     return children
+
 
 
 @callback(

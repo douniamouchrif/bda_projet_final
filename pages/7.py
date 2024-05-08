@@ -30,6 +30,7 @@ formatted_results_2 = [', '.join(map(str, row)) for row in results_2]
 formatted_results_4 = [', '.join(map(str, row)) for row in results_4]
 analyse_2 = "On remarque un cout très élevé sans index supplémentaire (cost=12758.80..16126.51), mais aussi un temps d'exécution élevé (Execution Time: 93.952 ms)."
 analyse_4 = "On remarque un cout similaire avec l'index supplémentaire au cout sans l'index supplémentaire, mais le temps d'exécution a bien diminué (27.733 ms vs 93.952 ms). "
+avertissement="ATTENTION : Les temps affichés dans nos analyses sont différents de ceux retournés par les plans d'éxécution (tout en restant similaires/comparables). Nous nous sommes basées sur les résultats obtenus lors de la première exécution du code. Malgré des résultats différents, les analyses restent les mêmes et aboutissent aux mêmes conclusions."
 
 
 def layout():
@@ -46,6 +47,14 @@ def display_query_results():
                 'color': '#F8F9FA', 'font-size': '2.5em'})
     ], style=card_style))
     children.append(html.Div([
+        html.Div([
+            html.P(html.Span(avertissement, style={"white-space": "pre-line"})),
+        ], style={
+            'border': '2px solid #ccc',  
+            'padding': '10px',  
+            'background-color': '#f4f4f4',  
+            'border-radius': '5px', 
+        }),
         html.H2(
             "Requête pour vérifier qu'une clé primaire est un index, sur la table région : "),
         html.Pre(query1),
