@@ -10,7 +10,7 @@ card_style = {
     'border': '2px solid #D3D3D3',
     'border-radius': '10px',
     'margin': '20px',
-    'background-color': '#F8F9FA', 
+    'background-color': '#F8F9FA',
 }
 
 image_style = {
@@ -21,9 +21,10 @@ image_style = {
     'margin': '0 auto',
 }
 
+
 def calculate_width(question):
-    # Adjust the width dynamically based on the length of the question text
     return min(300, max(150, 200 // len(question)))
+
 
 def layout():
     children = []
@@ -32,17 +33,17 @@ def layout():
                 'color': '#670907', 'font-size': '2.5em'})
     ], style=card_style))
     children.append(
-        html.P("Nous allons chercher à répondre aux questions suivantes : ", style={'fontSize': '1.25em'}))
+        html.P("Nous allons chercher à répondre aux demandes suivantes : ", style={'fontSize': '1.25em'}))
 
     question_links = [
         dcc.Link(
             pi['question'],
             href=pi['path'],
             style={
-                'fontSize': min(30, max(15, 400 // len(pi['question']))), 
+                'fontSize': min(30, max(15, 400 // len(pi['question']))),
                 'margin': '20px', 'padding': '10px', 'border': '5px double white',
                 'backgroundColor': '#670907', 'color': 'white',
-                'width': f"{calculate_width(pi['question'])}px",  # Dynamic width calculation
+                'width': f"{calculate_width(pi['question'])}px",
                 'height': 'auto', 'text-align': 'center',
                 'textDecoration': 'none'
             }
@@ -50,15 +51,14 @@ def layout():
         for pi in dash.page_registry.values() if 'question' in pi
     ]
 
-    # Splitting question links into two sections: top and bottom
     top_questions = question_links[:4]
     bottom_questions = question_links[4:]
 
     children.append(html.Div([
-        html.Div(top_questions, style={'display': 'flex', 'justifyContent': 'space-evenly'}),
-        html.Div(bottom_questions, style={'display': 'flex', 'justifyContent': 'space-evenly'}),
+        html.Div(top_questions, style={
+                 'display': 'flex', 'justifyContent': 'space-evenly'}),
+        html.Div(bottom_questions, style={
+                 'display': 'flex', 'justifyContent': 'space-evenly'}),
     ], style={'display': 'flex', 'flexDirection': 'column'}))
 
     return html.Div(children=children)
-
-
