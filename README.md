@@ -1,5 +1,13 @@
 # BASE DE DONNÉES PROJET FINAL
 
+## Installation : 
+
+Pour obtenir toutes les extensions utilisées dans ce projet, veuillez exécuter cette commande : 
+
+```bash 
+pip install -r requirements.txt
+```
+
 ## Pour créer/supprimer la base de données, veuillez suivre les étapes suivantes
  étape 1 : 
 
@@ -38,10 +46,9 @@ intermède 1 (terminal SQL shell) :
 
     - voir le contenu d'une table : select * from region;
 
-pour drop les tables à partir du SANS LA REFERENCE DES CHEF-LIEU :
+### Pour drop les tables à partir du SANS LA REFERENCE DES CHEF-LIEU :
 
-drop table stats_mar1 ;
-
+drop table stats_mar1 ;\
 drop table stats_mar2 ;
 
 drop table stats_mar3 ;
@@ -58,7 +65,7 @@ drop table departement;
 
 drop table region;
 
-pour drop les tables à partir du AVEC LA REFERENCE DES CHEF-LIEU :
+### Pour drop les tables à partir du AVEC LA REFERENCE DES CHEF-LIEU :
 
 drop table stats_mar1 ;
 
@@ -77,14 +84,6 @@ DROP TABLE commune CASCADE;
 drop table departement;
 
 drop table region;
-
-## Installation : 
-
-Pour obtenir toutes les extensions utilisées dans ce projet, veuillez exécuter cette commande : 
-
-```bash 
-pip install -r requirements.txt
-```
 
 ## Information : 
 
