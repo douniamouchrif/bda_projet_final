@@ -33,30 +33,66 @@ def display_query_results():
                 'color': '#F8F9FA', 'font-size': '2.5em'})
     ], style=card_style))
     children.append(html.Div([
-        html.H3("Vue 1"),
+        html.H3("Vue 1 : La population des départements pour les différentes années ainsi que les indicateurs existants."),
         html.Pre(view1),
-        html.Table([
-            html.Thead(
-                html.Tr([html.Th("num_departement"), html.Th("departement"), html.Th(
-                    "id_stat"), html.Th("libelle_indicateur"), html.Th("population")])
-            ),
+        html.Table(style={'border': '1px solid black', 'border-collapse': 'collapse'}, children=[
+            html.Thead(html.Tr([
+                html.Th("Numéro de département", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Département", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("ID de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Libellé de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Population", style={
+                        'border': '1px solid black', 'padding': '8px'})
+            ])),
             html.Tbody([
-                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(
-                    row[2]), html.Td(row[3]), html.Td(row[4])])
+                html.Tr([
+                    html.Td(row[1], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[2]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(row[3], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[4]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[5]), style={
+                            'border': '1px solid black', 'padding': '8px'})
+                ])
                 for row in df_pop_dep.itertuples()
             ])
         ]),
-
-        html.H3("Vue 2"),
+        html.Br(),
+        html.H3("Vue 2 : La population des régions pour les différentes années ainsi que les indicateurs existants."),
         html.Pre(view2),
-        html.Table([
-            html.Thead(
-                html.Tr([html.Th("num_region"), html.Th("region"), html.Th(
-                    "id_stat"), html.Th("libelle_indicateur"), html.Th("population")])
-            ),
+        html.Table(style={'border': '1px solid black', 'border-collapse': 'collapse'}, children=[
+            html.Thead(html.Tr([
+                html.Th("Numéro de la région", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Région", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("ID de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Libellé de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Population", style={
+                        'border': '1px solid black', 'padding': '8px'})
+            ])),
             html.Tbody([
-                html.Tr([html.Td(row[0]), html.Td(row[1]), html.Td(
-                    row[2]), html.Td(row[3]), html.Td(row[4])])
+                html.Tr([
+                    html.Td(str(row[1]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[2]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(row[3], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[4]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[5]), style={
+                            'border': '1px solid black', 'padding': '8px'})
+                ])
                 for row in df_pop_reg.itertuples()
             ])
         ]),
