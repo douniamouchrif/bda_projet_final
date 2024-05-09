@@ -46,19 +46,8 @@ intermède 1 (terminal SQL shell) :
 
     - voir le contenu d'une table : select * from region;
 
-### Pour drop les tables à partir du SANS LA REFERENCE DES CHEF-LIEU :
 
-drop table stats_mar1 ;\
-drop table stats_mar2 ;\
-drop table stats_mar3 ;\
-drop table stats_mar4 ;\
-drop table pop_commune;\
-drop table stats_var ;\
-drop table commune;\
-drop table departement;\
-drop table region;
-
-### Pour drop les tables à partir du AVEC LA REFERENCE DES CHEF-LIEU :
+### Pour drop les tables :
 
 drop table stats_mar1 ;\
 drop table stats_mar2 ;\

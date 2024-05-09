@@ -43,5 +43,5 @@ df_pop_reg = pd.DataFrame(pop_reg, columns=['num_reg', 'region', 'id_stat','libe
 """print(df_pop_reg.head())"""
 
 
-#conn.commit()
+conn.commit()
 

@@ -10,7 +10,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from dash_iconify import DashIconify
-from procedure import query1, pop_dep, pop_reg, query2
+from affichage import query1, pop_dep, pop_reg, query2
 
 question = "3. Procédure stockée : Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes. N'oubliez pas de modifier au préalable la structure de la base pour accueillir ces nouvelles informations."
 

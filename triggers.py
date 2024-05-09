@@ -1,7 +1,7 @@
 from datas.connect import conn
 
 cursor = conn.cursor()
-
+ 
 #Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables.
 #Il faut bloquer les commandes INSERT, UPDATE et DELETE.
 query5 = f"""
@@ -10,8 +10,8 @@ REVOKE INSERT, UPDATE, DELETE ON Region FROM PUBLIC;
 query6 = """
 REVOKE INSERT, UPDATE, DELETE ON Departement FROM PUBLIC;
 """
-#cursor.execute(query5)
-#cursor.execute(query6)
+cursor.execute(query5)
+cursor.execute(query6)
 
 #Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour 
 #la population d'un département/région quand la population d'une ville est mise à jour.
@@ -29,10 +29,10 @@ CREATE TRIGGER trigger_maj_pop
 AFTER INSERT OR UPDATE OR DELETE ON Pop_Commune
 FOR EACH STATEMENT EXECUTE FUNCTION maj_pop();
 """
-#cursor.execute(query7) 
+cursor.execute(query7) 
 
 
-### TEST pour vérifier que le trigger se déclanche bien (ou alors on pourra mettre juste un screen de la sortie du terminale)
+### TEST pour vérifier que le trigger se déclanche bien
  
 cursor.execute("""SELECT num_reg , nom_reg, pop1999 FROM Region where num_reg = '84';""")
 results_1 = cursor.fetchall()
