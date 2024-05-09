@@ -1,15 +1,7 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
 from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
 from requests import results_1, results_2, result_3, result_4, results_5, results_6, results_7
 

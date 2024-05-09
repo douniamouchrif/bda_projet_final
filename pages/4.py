@@ -1,6 +1,5 @@
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from affichage import query5, query6, query7, results_1

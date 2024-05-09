@@ -1,16 +1,8 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
 from plan_exe_index import query1, index_details, query2, results_2, query3, query4, results_4
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
 
 question = "7. Plan d\'exécution et index : Montrer l'intérêt des index sur plusieurs exemples. Vérifiez-le. Analyser aussi une requête qui liste les communes avec moins de 5000 habitants. Créer un index sur l'attribut population et refaites la manipulation. Vérifier que le SGBD fait les sélections individuelles avant de calculer les jointures."
 

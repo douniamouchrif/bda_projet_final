@@ -1,15 +1,7 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
 from affichage import query1, pop_dep, pop_reg, query2
 
 question = "3. Procédure stockée : Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes. N'oubliez pas de modifier au préalable la structure de la base pour accueillir ces nouvelles informations."
@@ -31,6 +23,7 @@ def layout():
         # Div pour afficher les résultats des requêtes
         html.Div(id='query-results3')
     ])
+
 
 def display_query_results():
     children = []

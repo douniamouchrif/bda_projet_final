@@ -1,16 +1,8 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
-from affichage import query11, query12,query13,query14, query15,query16, results_4,results_5
+from affichage import query11, query12, query13, query14, query15, query16, results_4, results_5
 from test5 import results_6
 
 
@@ -34,18 +26,21 @@ def layout():
         html.Div(id='query-results5')
     ])
 
+
 def display_query_results():
     children = []
     children.append(html.Div([
-        html.H1('4. Triggers (suite)', style={'textAlign': 'center',
+        html.H1('5. Triggers (suite)', style={'textAlign': 'center',
                 'color': '#F8F9FA', 'font-size': '2.5em'})
     ], style=card_style))
     children.append(html.Div([
         html.H3("On souhaite ajouter les 3 années de données supplémentaires. Automatisez au maximum les calculs de population quand une nouvelle année de recensement est ajoutée au niveau des communes."),
-        html.P("Nous avons importer les nouvelles données dans la table Pop_Commune. Puis, nous avons ajouté une colonne par année supplémentaire dans les tables Région et Département. Ensuite, nous avons utilisé des procédure stokées et un trigger pour mettre à jour automatiquement les tables Région et Département."),
-        html.H4("Procédure stockée pour calculer la population des départements des 3 nouvelles années :"),
+        html.P("Nous avons importé les nouvelles données dans la table Pop_Commune. Puis, nous avons ajouté une colonne par année supplémentaire dans les tables Region et Departement. Ensuite, nous avons utilisé des procédures stockées et un trigger pour mettre à jour automatiquement les tables Region et Departement."),
+        html.H4(
+            "Procédure stockée pour calculer la population des départements des 3 nouvelles années :"),
         html.Pre(query11),
-        html.H4("Procédure stockée pour calculer la population des régions des 3 nouvelles années :"),
+        html.H4(
+            "Procédure stockée pour calculer la population des régions des 3 nouvelles années :"),
         html.Pre(query12),
         html.H4("Procédure pour mettre à jour les populations de toutes les années si il ya des modifications dans Pop_communes :"),
         html.Pre(query13),
@@ -73,7 +68,7 @@ def display_query_results():
 
 @callback(
     Output('query-results5', 'children'),
-    [Input('query-results5', 'id')]  
+    [Input('query-results5', 'id')]
 )
 def update_query_results(trigger):
     return display_query_results()

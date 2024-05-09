@@ -1,6 +1,5 @@
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from vues import view1, view2, df_pop_dep, df_pop_reg

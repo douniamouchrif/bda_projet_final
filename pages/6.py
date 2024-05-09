@@ -1,15 +1,7 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
 from plan_exe import explain_results_1, exe_query1, exe_query2, explain_results_2, exe_query3, explain_results_3, exe_query4, explain_results_4, exe_query5, explain_results_5, exe_query6, explain_results_6, exe_query7, explain_results_7
 
 question = "6. Plan d\'exécution (EXPLAIN) : Comparer et expliquer le coût d'exécution de différentes requêtes. Faites apparaître les différents algorithmes de jointure ou différentes stratégies de tri en jouant en particulier sur la cardinalité des relations."
