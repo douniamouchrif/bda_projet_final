@@ -8,35 +8,19 @@ Pour obtenir toutes les extensions utilisées dans ce projet, veuillez exécuter
 pip install -r requirements.txt
 ```
 
-## Pour créer/supprimer la base de données, veuillez suivre les étapes suivantes
- étape 1 : 
+## Pour créer la base de données, veuillez suivre les étapes suivantes
 
     - si la database n'est pas créée :
 
         * connect.py : Création de la bdd + Connexion à la base de données
+
     - si la database est déjà créée :
 
         * connect.py : Connexion à la base de données
 
-étape 2 : 
+### Pour drop les tables de la base de données :
 
-    - si les tables ne sont pas créées :
-
-        * créer les tables avec database.py (lancer le fichier) -> pour voir si elles sont bien créées, on peut regarder à l'aide de pgAdmin 
-
-    - si les tables sont déjà créées :
-
-        * passer à l'étape 3
-
-étape 3 : 
-
-    - si les données n'ont pas été importées :
-
-        * importer les données dans les tables avec import_data.py (lancer le fichier) -> pour voir si elles ont bien été importées, on peut regarder à l'aide du terminal SQL shell (voir l'intermède 1) 
-
-    - si les tables sont déjà créées :
-
-        * passer à l'étape 4
+Lancer le fichier drop.py.
 
 intermède 1 (terminal SQL shell) :
 
@@ -46,18 +30,19 @@ intermède 1 (terminal SQL shell) :
 
     - voir le contenu d'une table : select * from region;
 
+### Pour lancer l'application :
 
-### Pour drop les tables :
+Lancer le fichier main.py.\
+Ce fichier exéctutera les fichiers suivants dans l'ordre pour le bon fonctionnement de l'application :\
+    - datas/database.py : ce fichier va créer les tables.
+    - datas/import_data.py : dans ce fichier nous importons les données.
+    - vues.py : il s'agit de la question qui crée les vues de la question 2.
+    - procedure.py : il s'agit de la question qui crée la procédure stockée de la question 3.
+    - triggers.py : il s'agit de la question qui crée un trigger à partir de la procédure stockée de la question 3.
+    - question5.py : ici nous importons 3 nouvelles années de données et nous faisons les mises à jours nécessaires.
+    - app.py : ce fichier permet de lancer notre application dash pour visualiser les requêtes et les résultats.
 
-drop table stats_mar1 ;\
-drop table stats_mar2 ;\
-drop table stats_mar3 ;\
-drop table stats_mar4 ;\
-drop table pop_commune CASCADE;\
-drop table stats_var ;\
-DROP TABLE commune CASCADE;\
-drop table departement;\
-drop table region;\
+Pour relancer l'application une deuxième fois, exécuter le fichier drop.py avant.
 
 ## Information : 
 

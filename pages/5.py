@@ -2,8 +2,7 @@ import dash
 from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-from affichage import query11, query12, query13, query14, query15, query16, results_4, results_5
-from test5 import results_6
+from affichage import query11, query12, query13, query14, query15, query16, results_4, results_5, query18, query19, results_6, results_7, update_pop_com5
 
 
 question = "5. Triggers (suite) : Automatisez au maximum les calculs de population quand une nouvelle année de recensement est ajoutée au niveau des communes. Factorisez au maximum le code avec des procédures stockées."
@@ -42,6 +41,16 @@ def display_query_results():
         html.H4(
             "Procédure stockée pour calculer la population des régions des 3 nouvelles années :"),
         html.Pre(query12),
+        html.H4("Nous avons pu observer que le calcul des populations était pertinent pour l'ensemble des départements et régions, mise à part pour Mayotte où il y a des valeurs manquantes."),
+        html.Pre(query18),
+        html.Ul([
+            html.Li(f"{row[0]} - {row[1]}") for row in results_6
+        ]),
+        html.Pre(query19),
+        html.Ul([
+            html.Li(f"{row[0]} - {row[1]}") for row in results_7
+        ]),
+        html.P("Nous sommes donc parties du principe le calcul est pertinent pour toutes les régions et départements."),
         html.H4("Procédure pour mettre à jour les populations de toutes les années si il ya des modifications dans Pop_communes :"),
         html.Pre(query13),
         html.H4("Trigger qui déclanche la procédure précédente :"),
@@ -58,7 +67,7 @@ def display_query_results():
         ]),
         html.H4("Après la mise à jour dans Pop_Commune pour l'année 2020 de la commune 01009 qui appartient à la region Auvergne-Rhône-Alpes :"),
         html.Ul([
-            html.Li(f"{row[0]} - {row[1]} - {row[2]}") for row in results_6
+            html.Li(f"{row[0]} - {row[1]} - {row[2]}") for row in update_pop_com5()
         ]),
         html.P("Nous pouvons voir que la valeur de Auvergne-Rhône-Alpes pour l'année 2020 s'est mise à jour.")
     ]))

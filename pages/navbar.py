@@ -15,7 +15,7 @@ NAV_LINK_STYLE = {
     "color": "white",
 }
 
-PAGE_ORDER = ["Home", "Questions"]
+PAGE_ORDER = ["Home","Presentation", "Questions"]
 
 
 def generate_sidebar(pathname):

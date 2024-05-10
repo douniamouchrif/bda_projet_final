@@ -2,8 +2,7 @@ import dash
 from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-from affichage import query5, query6, query7, results_1
-from test4 import results_2
+from affichage import query5, query6, query7, query8, results_1, query9, query10, update_pop_com4
 
 question = "4. Triggers : Faire en sorte que les tables REGIONS et DEPARTEMENTS ne soit pas modifiables. Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour la population d'un département/région quand la population d'une ville est mise à jour."
 
@@ -38,14 +37,20 @@ def display_query_results():
         html.Pre(query6),
         html.H3("Ajoutez un trigger qui utilise la procédure stockée précédente pour mettre à jour la population d'un département/région quand la population d'une ville est mise à jour :"),
         html.Pre(query7),
-        html.H3("Résultats de la requête :"),
-        # Supprimez html.Pre(results_1) et utilisez une boucle pour afficher les résultats
+        html.H3("Test du trigger :"),
+        html.H4("Valeur de la population pour la région Auvergne-Rhône-Alpes en 1999 :"),
+        html.Pre(query8),
         html.Ul([
             html.Li(f"{row[0]} - {row[1]} - {row[2]}") for row in results_1
         ]),
+        html.H4("Mise à jour de la population d'une commune qui va déclancher le trigger :"),
+        html.Pre(query9),
+        html.H4("Valeur de la population pour la région Auvergne-Rhône-Alpes en 1999 après la mise à jour :"),
+        html.Pre(query10),
         html.Ul([
-            html.Li(f"{row[0]} - {row[1]} - {row[2]}") for row in results_2
-        ])
+            html.Li(f"{row[0]} - {row[1]} - {row[2]}") for row in update_pop_com4(query9, query10)
+        ]),
+        html.P("Nous pouvons voir que la valeur de de population pour la région Auvergne-Rhône-Alpes en 1999 s'est mise à jour.")
     ]))
 
     return children

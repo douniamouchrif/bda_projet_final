@@ -125,23 +125,7 @@ for column_name in column_names[1:]:
     cursor.copy_expert(sql=copy_query, file=buffer_com)
 
 #appel des procedures stockées
-#print('Après ajout des 3 années dans Pop_Commune :')
 cursor.execute("""CALL calcul_pop_departements_new_years()""")
 cursor.execute("""CALL calcul_pop_regions_new_years()""")
-#on peut voir que les données pour les 3 années se sont ajoutés 
-cursor.execute("""SELECT * FROM REGION WHERE num_reg = '75' OR num_reg = '84';""")
-results_2 = cursor.fetchall()
-
-
-#test modification d'une ligne de Pop_commune
-#print('Avant modification dans Pop_Commune :')
-cursor.execute("""SELECT num_reg , nom_reg, pop2020 FROM Region where num_reg = '84';""")
-results_1 = cursor.fetchall()
-
-#print('Après modification dans Pop_Commune :')
-cursor.execute("""update pop_commune set valeur = 6543  where num_com = '01009';""")
-##on peut voir que la valeur de Auvergne-Rhône-Alpes pour D99_POP s'est mise à jour.
-cursor.execute("""SELECT num_reg , nom_reg, pop2020 FROM Region where num_reg = '84';""")
-results_2 = cursor.fetchall()
 
 conn.commit()
