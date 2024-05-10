@@ -44,9 +44,6 @@ Ce fichier exéctutera les fichiers suivants dans l'ordre pour le bon fonctionne
 
 Pour relancer l'application une deuxième fois, exécuter le fichier drop.py avant.
 
-## Information : 
-
-Attention à bien télécharger le code se trouvant sur la branche 'mathilde' et non sur la branche 'main'.
 ## Contributeurs  : 
 
 | [<img src="https://avatars.githubusercontent.com/u/102798630?v=4" width="50" height="50" alt=""/>](https://github.com/suhailaabarkan) | [<img src="https://avatars.githubusercontent.com/u/102798610?v=4" width="50" height="50" alt=""/>](https://github.com/douniamouchrif) | [<img src="https://avatars.githubusercontent.com/u/102798509?v=4" width="50" height="50" alt=""/>](https://github.com/mathildetissandier) |
