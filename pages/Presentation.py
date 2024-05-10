@@ -53,11 +53,14 @@ layout = html.Div(style={'color': 'black', 'min-height': '100vh'}, children=[
             style={'textAlign': 'center', 'fontSize': '3.0em'}),
     html.Br(),
     html.Div(style={'color': 'black'}, children=[
-        html.P("Pour la création de la base de données nous nous sommes basées sur le modèle relationnel suivant :", style={'fontSize': '1.25em'}),
+        html.P("Pour la création de la base de données nous nous sommes basées sur le modèle relationnel suivant :", style={
+               'fontSize': '1.25em'}),
         dcc.Markdown(children=modele_relationnel, style={'fontSize': '0.9em'}),
-        html.P("Les attributs en gras de chaque table sont les clés primaires.", style={'fontSize': '1.em'}),
-        html.P("Nous avons donc un total de 9 tables pour stocker les données de nos 11 fichiers.", style={'fontSize': '1.25em'}),
-        html.P("Au départ nous avons importé les données dans les tables Region et Departement sans la référence des chef_lieu vers les communes" 
-               "et c'est une fois la table Commune complète que nous avons ajouté la référence.", style={'fontSize': '1.25em'}),
+        html.P("Les attributs en gras de chaque table sont les clés primaires.", style={
+               'fontSize': '1.em'}),
+        html.P("Nous avons donc un total de 9 tables pour stocker les données de nos 11 fichiers.", style={
+               'fontSize': '1.25em'}),
+        html.P("Au départ, nous avons importé les données dans les tables Region et Departement sans la référence des chef_lieu vers les communes. "
+               "Une fois que la table Commune est complète, nous ajoutons la référence.", style={'fontSize': '1.25em'}),
     ])
 ])
