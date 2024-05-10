@@ -1,0 +1,11 @@
+
+*.pyc
+/__pycache__
+datas/__pycache__/connect.cpython-311.pyc
+pages/__pycache__/2.cpython-311.pyc
+/pages/__pycache__
+pages/__pycache__/3.cpython-311.pyc
+pages/__pycache__/4.cpython-311.pyc
+pages/__pycache__/5.cpython-311.pyc
+pages/__pycache__/6.cpython-311.pyc
+pages/__pycache__/7.cpython-311.pyc
