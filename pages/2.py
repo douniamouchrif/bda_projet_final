@@ -1,51 +1,109 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
-from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
-#from requests import results_1, results_2, results_3, results_4, results_5, results_6, results_7
+from vues import view1, view2, df_pop_dep, df_pop_reg
 
-question = "Créer deux vues (cf commande CREATE OR REPLACE VIEW) qui donnent la population des départements et des régions pour les différentes années ainsi que les indicateurs existants."
+question = "2. Vues : Créer deux vues (cf commande CREATE OR REPLACE VIEW) qui donnent la population des départements et des régions pour les différentes années ainsi que les indicateurs existants."
 
 dash.register_page(__name__, question=question, external_stylesheets=[
     dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-def layout () :
- html.Div([
-    html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
-])
- 
-def display_query_results():
-    # Exécuter les requêtes et obtenir les résultats ici
-    # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
+card_style = {
+    'padding': '20px',
+    'border': '2px solid #D3D3D3',
+    'border-radius': '10px',
+    'margin': '20px',
+    'background-color': '#670907',
+}
 
-    # Créer des éléments HTML pour afficher les résultats
-    results_div = html.Div([
-        html.H2("Résultats des requêtes"),
-        html.P("Résultat de la requête 1: " + str(query_1)),
-        html.P("Résultat de la requête 2: " + str(query_2)),
-        html.P("Résultat de la requête 3: " + str(query_3)),
-        html.P("Résultat de la requête 4: " + str(query_4)),
-        html.P("Résultat de la requête 5: " + str(query_5)),
-        html.P("Résultat de la requête 6: " + str(query_6)),
-        html.P("Résultat de la requête 7: " + str(query_7)),
-        # Ajoutez des résultats supplémentaires ici
+
+def layout():
+    return html.Div([
+        # Div pour afficher les résultats des requêtes
+        html.Div(id='query-results2')
     ])
-    
-    return results_div
-"""
-# Callback pour mettre à jour les résultats des requêtes
+
+
+def display_query_results():
+    children = []
+    children.append(html.Div([
+        html.H1('2. Vues', style={'textAlign': 'center',
+                'color': '#F8F9FA', 'font-size': '2.5em'})
+    ], style=card_style))
+    children.append(html.Div([
+        html.H3("Vue 1 : La population des départements pour les différentes années ainsi que les indicateurs existants."),
+        html.Pre(view1),
+        html.Table(style={'border': '1px solid black', 'border-collapse': 'collapse'}, children=[
+            html.Thead(html.Tr([
+                html.Th("Numéro de département", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Département", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("ID de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Libellé de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Population", style={
+                        'border': '1px solid black', 'padding': '8px'})
+            ])),
+            html.Tbody([
+                html.Tr([
+                    html.Td(row[1], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[2]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(row[3], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[4]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[5]), style={
+                            'border': '1px solid black', 'padding': '8px'})
+                ])
+                for row in df_pop_dep.itertuples()
+            ])
+        ]),
+        html.Br(),
+        html.H3("Vue 2 : La population des régions pour les différentes années ainsi que les indicateurs existants."),
+        html.Pre(view2),
+        html.Table(style={'border': '1px solid black', 'border-collapse': 'collapse'}, children=[
+            html.Thead(html.Tr([
+                html.Th("Numéro de la région", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Région", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("ID de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Libellé de la Statistique", style={
+                        'border': '1px solid black', 'padding': '8px'}),
+                html.Th("Population", style={
+                        'border': '1px solid black', 'padding': '8px'})
+            ])),
+            html.Tbody([
+                html.Tr([
+                    html.Td(str(row[1]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[2]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(row[3], style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[4]), style={
+                            'border': '1px solid black', 'padding': '8px'}),
+                    html.Td(str(row[5]), style={
+                            'border': '1px solid black', 'padding': '8px'})
+                ])
+                for row in df_pop_reg.itertuples()
+            ])
+        ]),
+
+    ]))
+
+    return children
+
+
 @callback(
-    Output('query-results', 'children'),
-    [Input('query-results', 'id')]  # Ajoutez un Input spécial pour déclencher le callback au démarrage de l'application
+    Output('query-results2', 'children'),
+    [Input('query-results2', 'id')]
 )
 def update_query_results(trigger):
-    return display_query_results()"""
+    return display_query_results()

@@ -1,51 +1,52 @@
-# Dash imports
 import dash
-from dash import html, dcc, Input, Output, State
-from dash import register_page, callback
-from dash import ctx, no_update, ALL
-from dash.exceptions import PreventUpdate
+from dash import html, Input, Output, callback
 from dash.dependencies import Input, Output
-
-# Dash extensions
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
-from dash_iconify import DashIconify
-from requests import query_1, query_2, query_3, query_4, query_5, query_6, query_7
-#from requests import results_1, results_2, results_3, results_4, results_5, results_6, results_7
+from affichage import query1, pop_dep, pop_reg, query2
 
-question = "Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes."
+question = "3. Procédure stockée : Écrivez une procédure stockée qui fait ce calcul à partir de la population des communes. N'oubliez pas de modifier au préalable la structure de la base pour accueillir ces nouvelles informations."
 
 dash.register_page(__name__, question=question, external_stylesheets=[
     dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
-def layout () :
- html.Div([
-    html.Div(id='query-results')  # Div pour afficher les résultats des requêtes
-])
- 
-def display_query_results():
-    # Exécuter les requêtes et obtenir les résultats ici
-    # Dans cet exemple, nous affichons simplement les requêtes sans les exécuter
+card_style = {
+    'padding': '20px',
+    'border': '2px solid #D3D3D3',
+    'border-radius': '10px',
+    'margin': '20px',
+    'background-color': '#670907',
+}
 
-    # Créer des éléments HTML pour afficher les résultats
-    results_div = html.Div([
-        html.H2("Résultats des requêtes"),
-        html.P("Résultat de la requête 1: " + str(query_1)),
-        html.P("Résultat de la requête 2: " + str(query_2)),
-        html.P("Résultat de la requête 3: " + str(query_3)),
-        html.P("Résultat de la requête 4: " + str(query_4)),
-        html.P("Résultat de la requête 5: " + str(query_5)),
-        html.P("Résultat de la requête 6: " + str(query_6)),
-        html.P("Résultat de la requête 7: " + str(query_7)),
-        # Ajoutez des résultats supplémentaires ici
+
+def layout():
+    return html.Div([
+        # Div pour afficher les résultats des requêtes
+        html.Div(id='query-results3')
     ])
-    
-    return results_div
-"""
-# Callback pour mettre à jour les résultats des requêtes
+
+
+def display_query_results():
+    children = []
+    children.append(html.Div([
+        html.H1('3. Procédure stockée', style={'textAlign': 'center',
+                'color': '#F8F9FA', 'font-size': '2.5em'})
+    ], style=card_style))
+    children.append(html.Div([
+        html.H3("Modification des tables Departement et Region"),
+        html.Pre(pop_dep),
+        html.Pre(pop_reg),
+        html.H3("Avec l'utilisation des vues créées :"),
+        html.Pre(query1),
+        html.H3("Sans l'utilisation des vues créées :"),
+        html.Pre(query2)
+    ]))
+
+    return children
+
+
 @callback(
-    Output('query-results', 'children'),
-    [Input('query-results', 'id')]  # Ajoutez un Input spécial pour déclencher le callback au démarrage de l'application
+    Output('query-results3', 'children'),
+    [Input('query-results3', 'id')]
 )
 def update_query_results(trigger):
-    return display_query_results()"""
+    return display_query_results()
