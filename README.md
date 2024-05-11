@@ -12,11 +12,11 @@ pip install -r requirements.txt
 
     - si la database n'est pas créée :
 
-        * datas/connect.py : Création de la bdd + Connexion à la base de données
+        * datas/connect.py : Connexion à la base de données "database = postgres" + Création de la base de données "bda1"
 
     - si la database est déjà créée :
 
-        * datas/connect.py : Connexion à la base de données
+        * datas/connect.py : Connexion à la base de données "database = bda1"
 
 ### Pour drop les tables de la base de données :
 
