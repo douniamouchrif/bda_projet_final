@@ -34,13 +34,13 @@ intermède 1 (terminal SQL shell) :
 
 Lancer le fichier main.py.\
 Ce fichier exéctutera les fichiers suivants dans l'ordre pour le bon fonctionnement de l'application :\
-    - datas/database.py : ce fichier va créer les tables.
-    - datas/import_data.py : dans ce fichier nous importons les données.
-    - vues.py : il s'agit de la question qui crée les vues de la question 2.
-    - procedure.py : il s'agit de la question qui crée la procédure stockée de la question 3.
-    - triggers.py : il s'agit de la question qui crée un trigger à partir de la procédure stockée de la question 3.
-    - question5.py : ici nous importons 3 nouvelles années de données et nous faisons les mises à jours nécessaires.
-    - app.py : ce fichier permet de lancer notre application dash pour visualiser les requêtes et les résultats.
+    - datas/database.py : ce fichier va créer les tables.\
+    - datas/import_data.py : dans ce fichier nous importons les données.\
+    - vues.py : il s'agit de la question qui crée les vues de la question 2.\
+    - procedure.py : il s'agit de la question qui crée la procédure stockée de la question 3.\
+    - triggers.py : il s'agit de la question qui crée un trigger à partir de la procédure stockée de la question 3.\
+    - question5.py : ici nous importons 3 nouvelles années de données et nous faisons les mises à jours nécessaires.\
+    - app.py : ce fichier permet de lancer notre application dash pour visualiser les requêtes et les résultats.\
 
 Pour relancer l'application une deuxième fois, exécuter le fichier drop.py avant.
 
